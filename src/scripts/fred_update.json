@@ -1,6 +1,5 @@
 {
-  "name": "Fred Beta Smith",
-  "age": 34,
-  "messages": [ "hello fred 1", "hello fred 2", "hello fred 3" ],
-  "userid": 10
+   "name": "Fred Smith",
+  "address": "1900 Commerce St, Tacoma, WA 98402",
+  "rating": 5
 }
