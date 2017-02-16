@@ -30,7 +30,8 @@ public class Model {
     private static Model instance;
     private Connection conn;
     List<Review> reviewList;
-      List<CoffeeShop> coffeeShopList;
+    List<CoffeeShop> coffeeShopList;
+    private static int coffeeShopId = 1;
 
     public static Model singleton() throws Exception {
         if (instance == null) {
@@ -50,6 +51,7 @@ public class Model {
         conn = DriverManager.getConnection(dbUrl);
         logger.log(Level.INFO, "db connection ok.");
         reviewList = new ArrayList<>();
+        coffeeShopList = new ArrayList<>();
     }
 
     private Connection getConnection() {
@@ -92,7 +94,7 @@ public class Model {
 
     public void deleteReview(String name) {
         //To change body of generated methods, choose Tools | Templates.
-        
+
         System.out.println("deleted");
 
         // pst.setInt(1, name);
@@ -107,11 +109,24 @@ public class Model {
         sqlQuery.append("where description=" + jobj.getDescription() + ";");
         System.out.println("updated");
     }
+    
+    public void createCoffeeShop(CoffeeShop coffeeShop){
+        coffeeShop.setId(coffeeShopId);
+        coffeeShopList.add(coffeeShop);
+        coffeeShopId++;
+    }
 
-    public void deleteCoffeeShop(String jobj) {
+    public CoffeeShop deleteCoffeeShop(int id) {
 
         //To change body of generated methods, choose Tools | Templates.
-        System.out.println("deleted");
+       CoffeeShop toDelete = null;
+       for(int i = 0; i < coffeeShopList.size(); i++) {
+           if(coffeeShopList.get(i).getId()==id){
+               toDelete = coffeeShopList.get(i);
+               coffeeShopList.remove(i);
+           }
+       }
+       return toDelete;
     }
 
     public List<CoffeeShop> getCoffeeShop() {
@@ -119,18 +134,19 @@ public class Model {
         return coffeeShopList;
     }
 
-   public boolean updateCoffeeShop(CoffeeShop shop) throws SQLException
-    {
-        StringBuilder sqlQuery = new StringBuilder();
-        sqlQuery.append("update coffee shop ");
-        sqlQuery.append("set name='" + shop.getName() + "', ");
-        sqlQuery.append("address=" + shop.getAddress() + " ");
-        sqlQuery.append("user rating=" + shop.getRating() + ";");
-        Statement st = createStatement();
-        logger.log(Level.INFO, "UPDATE SQL=" + sqlQuery.toString());
-        return st.execute(sqlQuery.toString());
+    public boolean updateCoffeeShop(CoffeeShop shop) throws SQLException {
+        
+        boolean updated = false;
+        for(int i=0;i<coffeeShopList.size();i++){
+            if(shop.getId()==coffeeShopList.get(i).getId()){
+                coffeeShopList.get(i).setAddress(shop.getAddress());
+                coffeeShopList.get(i).setName(shop.getName());
+                coffeeShopList.get(i).setDescription(shop.getDescription());
+                updated = true;
+            }
+        }
+        
+        return updated;
     }
-
-
 
 }

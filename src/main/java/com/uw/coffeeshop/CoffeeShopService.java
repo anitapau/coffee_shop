@@ -16,6 +16,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import objects.CoffeeShop;
@@ -34,10 +35,8 @@ public class CoffeeShopService {
 //TODO return proper representation object
         List<CoffeeShop> coffeeshop = null;
         ObjectMapper mapper = new ObjectMapper();
-        StringBuilder sb = new StringBuilder();
         Model db = null;
         try {
-
             db = Model.singleton();
             coffeeshop = db.getCoffeeShop();
 
@@ -49,26 +48,21 @@ public class CoffeeShopService {
     }
     
     @PUT
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String updateCoffeeShop(String jobj) throws IOException {
+    public String updateCoffeeShop( String jobj) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         CoffeeShop coffee = mapper.readValue(jobj, CoffeeShop.class);
         StringBuilder text = new StringBuilder();
         Model db = null;
         try {
           db = Model.singleton();
-            String address = coffee.getAddress();
-            String name = coffee.getName();
-            double rating = coffee.getRating();
-            db.updateCoffeeShop(coffee);
-            //logger.log(Level.INFO, "update coffeeshop with name={0}", name);
-            text.append("coffee shop updated with name=").append(name).append("\n");
-            //logger.log(Level.INFO, "update coffeeshop with address={0}", address);
-            text.append("coffee shop updated with address=").append(address).append("\n");
-            //logger.log(Level.INFO, "update coffeeshop with rating={0}", rating);
-            text.append("coffee shop updated with rating=").append(rating).append("\n");
-
+          boolean updated = db.updateCoffeeShop(coffee);
+           if(!updated){
+                text.append("coffee shop not found");
+            }else{
+                text.append("CofeeShop is updated with name=" + coffee.getName());
+            }
         } catch (Exception ex) { 
             Logger.getLogger(CoffeeShopService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,11 +74,11 @@ public class CoffeeShopService {
     @Consumes(MediaType.APPLICATION_JSON)
     public void createCoffeeShop(String jobj) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        Review user = mapper.readValue(jobj.toString(), Review.class);
+        CoffeeShop coffeeShop = mapper.readValue(jobj.toString(), CoffeeShop.class);
         Model db = null;
         try {
             db = Model.singleton();
-            db.createReview(user);
+            db.createCoffeeShop(coffeeShop);
         } catch (Exception ex) {
             Logger.getLogger(ReviewService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -92,19 +86,21 @@ public class CoffeeShopService {
     }
 
     @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public String deleteCoffeeShop(String jobj) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        CoffeeShop coffeeShop = mapper.readValue(jobj.toString(), CoffeeShop.class);
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/{id}")
+    public String deleteCoffeeShop(@PathParam("id") int id) throws IOException {
         StringBuilder text = new StringBuilder();
         Model db = null;
         try {
             db = Model.singleton();
-            String shopName = coffeeShop.getName();
-            db.deleteCoffeeShop(jobj);
+            CoffeeShop shop = db.deleteCoffeeShop(id);
             // logger.log(Level.INFO, "user deleted from db=" + userid);
-            text.append("CofeeShop is deleted with name=" + shopName);
+            if(shop == null){
+                text.append("coffee shop not found");
+            }else{
+                text.append("CofeeShop is deleted with name=" + shop.getName());
+            }
+            
         } catch (Exception ex) {
             Logger.getLogger(CoffeeShopService.class.getName()).log(Level.SEVERE, null, ex);
         }

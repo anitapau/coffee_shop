@@ -1,6 +1,3 @@
- ▸    Error: No app specified
- ▸    Usage: heroku run --app APP
- ▸    We don't know which app to run this on.
- ▸    Run this command from inside an app folder or specify which app to use with --app APP
- ▸    
- ▸    https://devcenter.heroku.com/articles/using-the-cli#app-commands
+Running echo $JDBC_DATABASE_URL on gentle-coast-59786... starting, run.3805 (Free)
+Running echo $JDBC_DATABASE_URL on gentle-coast-59786... connecting, run.3805 (Free)
+Running echo $JDBC_DATABASE_URL on gentle-coast-59786... up, run.3805 (Free)
