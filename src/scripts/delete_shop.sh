@@ -1,5 +1,5 @@
 
-ENDPOINT=http://gentle-coast-59786.herokuapp.com/tcss360/coffeeshop/1
+ENDPOINT=https://gentle-coast-59786.herokuapp.com/tcss360/coffeeShop/1
 # heroku
 #ENDPOINT=https://frozen-temple-15527.herokuapp.com/tcss360/coffeeshop/1
 # local web runner deploy

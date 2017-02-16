@@ -1,5 +1,5 @@
 
-ENDPOINT=http://gentle-coast-59786.herokuapp.com/tcss360/coffeeshop
+ENDPOINT=https://gentle-coast-59786.herokuapp.com/tcss360/coffeeShop
 # local web runner deploy
 #ENDPOINT=http://localhost:8080/tcss360/coffeeShop
 # net beans deploy
