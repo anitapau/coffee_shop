@@ -1,9 +1,9 @@
 
-ENDPOINT=https://gentle-coast-59786.herokuapp.com/tcss360/coffeeshop
+ENDPOINT=https://gentle-coast-59786.herokuapp.com/tcss360/review
 # heroku
 #ENDPOINT=https://frozen-temple-15527.herokuapp.com/tcss360/users
 # local web runner deploy
-ENDPOINT=http://localhost:8080/tcss360/cofeeshop
+ENDPOINT=http://localhost:8080/tcss360/review
 # net beans deploy
 #ENDPOINT=http://localhost:8084/sample_maven_web_app/tcss360/
 # manual deploy
