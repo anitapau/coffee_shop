@@ -111,10 +111,18 @@ public class Model {
         System.out.println("updated");
     }
     
-    public void createCoffeeShop(CoffeeShop coffeeShop){
-        coffeeShop.setShopid(coffeeShopId);
-        coffeeShopList.add(coffeeShop);
-        coffeeShopId++;
+    public void createCoffeeShop(CoffeeShop coffeeShop){     
+    coffeeShop.setName(coffeeShop.getName());
+    coffeeShop.setCity(coffeeShop.getCity());
+    coffeeShop.setCity(coffeeShop.getState());
+    coffeeShop.setZip(coffeeShop.getZip());
+    coffeeShop.setPhonenumber(coffeeShop.getPhonenumber());
+    coffeeShop.setDescription(coffeeShop.getDescription());
+    coffeeShop.setOpentime(coffeeShop.getOpentime());
+    coffeeShop.setClosetime(coffeeShop.getClosetime());
+    coffeeShop.setShopid(coffeeShopId++);
+    coffeeShopList.add(coffeeShop);
+        
     }
 
     public CoffeeShop deleteCoffeeShop(int id) {
@@ -130,18 +138,36 @@ public class Model {
        return toDelete;
     }
 
-    public List<CoffeeShop> getCoffeeShop() {
+    public CoffeeShop getCoffeeShop(int shopid) {
+        //To change body of generated methods, choose Tools | Templates.
+          CoffeeShop coffeeShop = null;
+        for(int i = 0; i< coffeeShopList.size(); i++) {
+            if(coffeeShopList.get(i).getShopid() == shopid) {
+               coffeeShop = coffeeShopList.get(i);
+            }
+        }
+        return coffeeShop;
+    }
+    
+     public List<CoffeeShop> getCoffeeShop() {
         //To change body of generated methods, choose Tools | Templates.
         return coffeeShopList;
     }
 
-    public boolean updateCoffeeShop(CoffeeShop shop) throws SQLException {
+    public boolean updateCoffeeShop(CoffeeShop coffeeShop) throws SQLException {
         
         boolean updated = false;
         for(int i=0;i<coffeeShopList.size();i++){
-            if(shop.getShopid()==coffeeShopList.get(i).getShopid()){
-                coffeeShopList.get(i).setName(shop.getName());
-                coffeeShopList.get(i).setDescription(shop.getDescription());
+            if(coffeeShop.getShopid()==coffeeShopList.get(i).getShopid()){
+                coffeeShopList.get(i).setName(coffeeShop.getName());
+                coffeeShopList.get(i).setDescription(coffeeShop.getDescription());
+                coffeeShop.setCity(coffeeShop.getCity());
+                coffeeShop.setCity(coffeeShop.getState());
+                coffeeShop.setZip(coffeeShop.getZip());
+                coffeeShop.setPhonenumber(coffeeShop.getPhonenumber());
+                coffeeShop.setDescription(coffeeShop.getDescription());
+                coffeeShop.setOpentime(coffeeShop.getOpentime());
+                coffeeShop.setClosetime(coffeeShop.getClosetime());
                 updated = true;
             }
         }

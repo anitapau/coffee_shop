@@ -41,6 +41,48 @@ public class CoffeeShop {
      * Review of the coffeeShops
      */
     private List<Review> Review;
+    /**
+     * Feature of the coffeeShop
+     */
+    private List<String> features;
+    
+    
+     /**
+     * Phone number of the coffee shop.
+     */
+    private long phonenumber;
+    /**
+     * Opening time of the coffee shop
+     */
+    private int opentime;
+
+    public long getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(long phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public int getOpentime() {
+        return opentime;
+    }
+
+    public void setOpentime(int opentime) {
+        this.opentime = opentime;
+    }
+
+    public int getClosetime() {
+        return closetime;
+    }
+
+    public void setClosetime(int closetime) {
+        this.closetime = closetime;
+    }
+    /**
+     * Close time of the coffee shop
+     */
+    private int closetime;
 
     public String getCity() {
         return city;

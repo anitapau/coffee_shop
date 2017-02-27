@@ -26,9 +26,9 @@ public class Review {
      */
    private Integer shopid;
 
-    public Review(String review, int reviewid, int shopid){
+    public Review(String review, int shopid){
         this.review = review;
-        this.reviewid = reviewid;
+        this.shopid = shopid;
     }
 
 
@@ -37,7 +37,7 @@ public class Review {
         return review;
     }
 
-    public void setFeature(String review) {
+    public void setReview(String review) {
         this.review = review;
     }
 

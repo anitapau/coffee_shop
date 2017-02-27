@@ -29,6 +29,7 @@ import org.codehaus.jackson.map.ObjectMapper;
  */
 @Path("coffeeShop")
 public class CoffeeShopService {
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getCoffeeShop() throws IOException {
@@ -46,6 +47,25 @@ public class CoffeeShopService {
         return mapper.writeValueAsString(coffeeshop);
       
     }
+    
+    @GET
+    @Path("/{shopId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCoffeeShopById(@PathParam("shopId") int shopId) throws IOException {
+        CoffeeShop coffeeShop = null;
+        ObjectMapper mapper = new ObjectMapper();
+        Model db = null;
+        try {
+            db = Model.singleton();
+            coffeeShop = db.getCoffeeShop(shopId);
+
+        } catch (Exception ex) {
+            Logger.getLogger(CoffeeShopService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mapper.writeValueAsString(coffeeShop);
+      
+    }
+    
     
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
@@ -80,7 +100,7 @@ public class CoffeeShopService {
             db = Model.singleton();
             db.createCoffeeShop(coffeeShop);
         } catch (Exception ex) {
-            Logger.getLogger(ReviewService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CoffeeShopService.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
