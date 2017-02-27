@@ -31,7 +31,7 @@ public class Model {
     private Connection conn;
     List<Review> reviewList;
     List<CoffeeShop> coffeeShopList;
-    private static int coffeeShopId = 1;
+    private static Integer coffeeShopId = 1;
 
     public static Model singleton() throws Exception {
         if (instance == null) {
@@ -103,15 +103,16 @@ public class Model {
 
     public void updateReview(Review jobj) {
         StringBuilder sqlQuery = new StringBuilder();
-        sqlQuery.append("update review ");
+        /**
+         * sqlQuery.append("update review ");
         sqlQuery.append("set name='" + jobj.getName() + "', ");
         sqlQuery.append("rating=" + jobj.getRating() + " ");
-        sqlQuery.append("where description=" + jobj.getDescription() + ";");
+        sqlQuery.append("where description=" + jobj.() + ";");**/
         System.out.println("updated");
     }
     
     public void createCoffeeShop(CoffeeShop coffeeShop){
-        coffeeShop.setId(coffeeShopId);
+        coffeeShop.setShopid(coffeeShopId);
         coffeeShopList.add(coffeeShop);
         coffeeShopId++;
     }
@@ -121,7 +122,7 @@ public class Model {
         //To change body of generated methods, choose Tools | Templates.
        CoffeeShop toDelete = null;
        for(int i = 0; i < coffeeShopList.size(); i++) {
-           if(coffeeShopList.get(i).getId()==id){
+           if(coffeeShopList.get(i).getShopid()==id){
                toDelete = coffeeShopList.get(i);
                coffeeShopList.remove(i);
            }
@@ -138,8 +139,7 @@ public class Model {
         
         boolean updated = false;
         for(int i=0;i<coffeeShopList.size();i++){
-            if(shop.getId()==coffeeShopList.get(i).getId()){
-                coffeeShopList.get(i).setAddress(shop.getAddress());
+            if(shop.getShopid()==coffeeShopList.get(i).getShopid()){
                 coffeeShopList.get(i).setName(shop.getName());
                 coffeeShopList.get(i).setDescription(shop.getDescription());
                 updated = true;

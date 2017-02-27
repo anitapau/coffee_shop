@@ -4,39 +4,82 @@
  * and open the template in the editor.
  */
 package objects;
+
+import java.util.List;
+
 /**
  *
  * @author ubuntu
  */
 public class CoffeeShop {
 
-    String name;
-    String address; 
-    String description;
-    int id;
-    public CoffeeShop(){}
+     /**
+     * The id of the coffee shop.
+     */
+    private int shopid;
+    /**
+     * Name of the coffee shop.
+     */
+    private String name;
+    /**
+     * City of the coffee shop.
+     */
+    private String city;
+    /**
+     * State of the coffee shop.
+     */
+    private String state;
+    /**
+     * Zip of the coffee shop.
+     */
+    private long zip;
+    /**
+     * Phone number of the coffee shop.
+     */
+    private String description;
+    /**
+     * Review of the coffeeShops
+     */
+    private List<Review> Review;
 
-    public CoffeeShop(String name, String address, String description, int id) {
-        this.name = name;
-        this.address = address;
-        this.description = description;
-        this.id = id;
+    public String getCity() {
+        return city;
     }
-    
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public long getZip() {
+        return zip;
+    }
+
+    public void setZip(long zip) {
+        this.zip = zip;
+    }
+
+    public int getShopid() {
+        return shopid;
+    }
+
+    public void setShopid(int shopid) {
+        this.shopid = shopid;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getDescription() {
@@ -47,13 +90,13 @@ public class CoffeeShop {
         this.description = description;
     }
 
-    public double getId() {
-        return id;
+    public List<Review> getFeatures() {
+        return Review;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setReviews(List<Review> reviews) {
+        this.Review = reviews;
+}
 
     
 }

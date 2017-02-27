@@ -12,43 +12,49 @@ import java.util.List;
  * @author ubuntu
  */
 public class Review {
-	int rating;
-	String name;
-        String description;
+    /**
+     * The id associated with this review.
+     */
+    private Integer reviewid;
+    /**
+     * A reviews string representation of the review.
+     */
+    private String review;
+    
+    /**
+     * Shop id associated with this review.
+     */
+   private Integer shopid;
 
-    public int getRating() {
-        return rating;
+    public Review(String review, int reviewid, int shopid){
+        this.review = review;
+        this.reviewid = reviewid;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+
+    // GETTERS AND SETTERS
+    public String getReview() {
+        return review;
     }
 
-    public String getName() {
-        return name;
+    public void setFeature(String review) {
+        this.review = review;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getReviewId() {
+        return reviewid;
+    }
+
+    public void setReviewId(Integer reviewid) {
+        this.reviewid = reviewid;
     }
     
-    public Review(){
-        
+        public Integer getShopid() {
+        return shopid;
     }
 
-    public Review(int rating, String name, String description) {
-        this.rating = rating;
-        this.name = name;
-        this.description = description;
+    public void setShopid(Integer shopid) {
+        this.shopid = shopid;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 
 }
