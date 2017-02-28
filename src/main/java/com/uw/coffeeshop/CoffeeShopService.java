@@ -34,18 +34,19 @@ public class CoffeeShopService {
      @Path("/{api/shops}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getCoffeeShop() throws IOException {
-//TODO return proper representation object
-        List<CoffeeShop> coffeeshop = null;
-        ObjectMapper mapper = new ObjectMapper();
-        Model db = null;
+        StringBuilder sb = new StringBuilder();
+        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>MESSAGE LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>id</td><td>city</td><td>state</td><td>zip</td><td>phone</td><td>opentime</td><td>closetime</td><td>description</td></tr>");
         try {
-            db = Model.singleton();
-            coffeeshop = db.getCoffeeShop();
-
-        } catch (Exception ex) {
-            Logger.getLogger(CoffeeShopService.class.getName()).log(Level.SEVERE, null, ex);
+            Model db = Model.singleton();
+            CoffeeShop[] shop = db.getCoffeeShop();
+            for (int i = 0; i < shop.length; i++) {
+                sb.append("<tr><td>" + shop[i].getName()+ "</td><td>" + shop[i].getShopid()+ "</td><td>" + shop[i].getCity()+"</td><td>" + shop[i].getState()+ "</td><td>" + shop[i].getZip()+ "</td><td>" + shop[i].getPhone()+ "</td><td>" + shop[i].getOpentime()+ "</td><td>" + shop[i].getClosetime()+ "</td></tr>");
+            }
+        } catch (Exception e) {
+            sb.append("</table><br>Error getting users: " + e.toString() + "<br>");
         }
-        return mapper.writeValueAsString(coffeeshop);
+        sb.append("</table></body></html>");
+        return sb.toString();
       
     }
     
