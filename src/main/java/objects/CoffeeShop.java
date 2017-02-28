@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class CoffeeShop {
 
-     /**
+    /**
      * The id of the coffee shop.
      */
     private int shopid;
@@ -36,8 +36,8 @@ public class CoffeeShop {
     /**
      * Phone number of the coffee shop.
      */
-    private String description;  
-     /**
+    private String description;
+    /**
      * Phone number of the coffee shop.
      */
     private long phone;

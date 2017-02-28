@@ -12,6 +12,7 @@ import java.util.List;
  * @author ubuntu
  */
 public class Review {
+
     /**
      * The id associated with this review.
      */
@@ -20,17 +21,16 @@ public class Review {
      * A reviews string representation of the review.
      */
     private String review;
-    
+
     /**
      * Shop id associated with this review.
      */
-   private Integer shopid;
+    private Integer shopid;
 
-    public Review(String review, int shopid){
+    public Review(String review, int shopid) {
         this.review = review;
         this.shopid = shopid;
     }
-
 
     // GETTERS AND SETTERS
     public String getReview() {
@@ -48,8 +48,8 @@ public class Review {
     public void setReviewId(Integer reviewid) {
         this.reviewid = reviewid;
     }
-    
-        public Integer getShopid() {
+
+    public Integer getShopid() {
         return shopid;
     }
 

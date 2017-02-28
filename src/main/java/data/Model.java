@@ -104,51 +104,64 @@ public class Model {
     public void updateReview(Review jobj) {
         StringBuilder sqlQuery = new StringBuilder();
         /**
-         * sqlQuery.append("update review ");
-        sqlQuery.append("set name='" + jobj.getName() + "', ");
-        sqlQuery.append("rating=" + jobj.getRating() + " ");
-        sqlQuery.append("where description=" + jobj.() + ";");**/
+         * sqlQuery.append("update review "); sqlQuery.append("set name='" +
+         * jobj.getName() + "', "); sqlQuery.append("rating=" + jobj.getRating()
+         * + " "); sqlQuery.append("where description=" + jobj.() + ";");*
+         */
         System.out.println("updated");
     }
-    
-    public void createCoffeeShop(CoffeeShop coffeeShop){     
-    coffeeShop.setName(coffeeShop.getName());
-    coffeeShop.setCity(coffeeShop.getCity());
-    coffeeShop.setCity(coffeeShop.getState());
-    coffeeShop.setZip(coffeeShop.getZip());
-    coffeeShop.setPhone(coffeeShop.getPhone());
-    coffeeShop.setDescription(coffeeShop.getDescription());
-    coffeeShop.setOpentime(coffeeShop.getOpentime());
-    coffeeShop.setClosetime(coffeeShop.getClosetime());
-    coffeeShop.setShopid(coffeeShopId++);
-    coffeeShopList.add(coffeeShop);
-        
-    }
 
-    public CoffeeShop deleteCoffeeShop(int id) {
-
-        //To change body of generated methods, choose Tools | Templates.
-       CoffeeShop toDelete = null;
-       for(int i = 0; i < coffeeShopList.size(); i++) {
-           if(coffeeShopList.get(i).getShopid()==id){
-               toDelete = coffeeShopList.get(i);
-               coffeeShopList.remove(i);
-           }
-       }
-       return toDelete;
-    }
-
-    public CoffeeShop getCoffeeShop(int shopid) {
-        //To change body of generated methods, choose Tools | Templates.
-          CoffeeShop coffeeShop = null;
-        for(int i = 0; i< coffeeShopList.size(); i++) {
-            if(coffeeShopList.get(i).getShopid() == shopid) {
-               coffeeShop = coffeeShopList.get(i);
-            }
+    public int createCoffeeShop(CoffeeShop coffeeShop) {
+      String sqlInsert = "insert into messages (userId, message, dateadded) values (" + message.getUserId() + ",'" + message.getMessage()+"', now());";
+        logger.log(Level.INFO, "SQL STATMENT= " + sqlInsert);
+        Statement s = createStatement();
+        logger.log(Level.INFO, "attempting statement execute");
+        s.execute(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+        logger.log(Level.INFO, "statement executed.  atempting get generated keys");
+        ResultSet rs = s.getGeneratedKeys();
+        logger.log(Level.INFO, "retrieved keys from statement");
+        int messageId = -1;
+        while (rs.next()) {
+            messageId = rs.getInt(1);   // assuming 1st column is messageid
         }
-        return coffeeShop;
+        logger.log(Level.INFO, "The new Message id=" + messageId);
+        return messageId;
+
     }
-    
+
+    public void deleteCoffeeShop(int id) throws SQLException {
+
+        String sqlDelete = "delete from coffeeShop where shopid=?";
+        PreparedStatement pst = createPreparedStatement(sqlDelete);
+        pst.setInt(1, id);
+        pst.execute();
+
+    }
+
+    public CoffeeShop[] getCoffeeShop(int shopid) throws SQLException {
+        //To change body of generated methods, choose Tools | Templates.
+        LinkedList<CoffeeShop> ll = new LinkedList<CoffeeShop>();
+        String sqlQuery = "select * from coffeeShop where id = " + shopid + ";";
+        Statement st = createStatement();
+        ResultSet rows = st.executeQuery(sqlQuery);
+        while (rows.next()) {
+            logger.log(Level.INFO, "Reading row...");
+            CoffeeShop shop = new CoffeeShop();
+            shop.setName(rows.getString("`name`"));
+            shop.setShopid(rows.getInt("id"));
+            shop.setCity(rows.getString("city"));
+            shop.setState(rows.getString("state"));
+            shop.setZip(rows.getInt("zip"));
+            shop.setOpentime(rows.getInt("opentime"));
+            shop.setClosetime(rows.getInt("closetime"));
+            shop.setDescription(rows.getString("description"));
+            logger.log(Level.INFO, "Adding coffeeShop to list with id=" + shop.getShopid());
+            ll.add(shop);
+        }
+        return ll.toArray(new CoffeeShop[ll.size()]);
+
+    }
+
     public CoffeeShop[] getCoffeeShop() throws SQLException {
         LinkedList<CoffeeShop> ll = new LinkedList<CoffeeShop>();
         String sqlQuery = "select * from coffeeShop;";
@@ -160,7 +173,7 @@ public class Model {
             shop.setName(rows.getString("`name`"));
             shop.setShopid(rows.getInt("id"));
             shop.setCity(rows.getString("city"));
-            shop.setState(rows.getString("street"));
+            shop.setState(rows.getString("state"));
             shop.setZip(rows.getInt("zip"));
             shop.setOpentime(rows.getInt("opentime"));
             shop.setClosetime(rows.getInt("closetime"));
@@ -172,24 +185,20 @@ public class Model {
     }
 
     public boolean updateCoffeeShop(CoffeeShop coffeeShop) throws SQLException {
-        
-        boolean updated = false;
-        for(int i=0;i<coffeeShopList.size();i++){
-            if(coffeeShop.getShopid()==coffeeShopList.get(i).getShopid()){
-                coffeeShopList.get(i).setName(coffeeShop.getName());
-                coffeeShopList.get(i).setDescription(coffeeShop.getDescription());
-                coffeeShop.setCity(coffeeShop.getCity());
-                coffeeShop.setCity(coffeeShop.getState());
-                coffeeShop.setZip(coffeeShop.getZip());
-                coffeeShop.setPhone(coffeeShop.getPhone());
-                coffeeShop.setDescription(coffeeShop.getDescription());
-                coffeeShop.setOpentime(coffeeShop.getOpentime());
-                coffeeShop.setClosetime(coffeeShop.getClosetime());
-                updated = true;
-            }
-        }
-        
-        return updated;
-    }
+        StringBuilder sqlQuery = new StringBuilder();
+        sqlQuery.append("update coffeeShop ");
+        sqlQuery.append("set `name`=" + coffeeShop.getName() + ",");
+        sqlQuery.append("city='" + coffeeShop.getCity() + "', ");
+        sqlQuery.append("`state`='" + coffeeShop.getState() + "', ");
+        sqlQuery.append("zip='" + coffeeShop.getZip() + "', ");
+        sqlQuery.append("phone='" + coffeeShop.getPhone() + "', ");
+        sqlQuery.append("opentime='" + coffeeShop.getOpentime() + "', ");
+        sqlQuery.append("closetime='" + coffeeShop.getClosetime() + "', ");
+        sqlQuery.append("description='" + coffeeShop.getDescription() + "' ");
+        sqlQuery.append("where id=" + coffeeShop.getShopid() + ";");
+        Statement st = createStatement();
+        logger.log(Level.INFO, "UPDATE SQL=" + sqlQuery.toString());
+        return st.execute(sqlQuery.toString());
 
+    }
 }
