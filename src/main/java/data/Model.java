@@ -111,8 +111,16 @@ public class Model {
         System.out.println("updated");
     }
 
-    public int createCoffeeShop(CoffeeShop coffeeShop) {
-      String sqlInsert = "insert into messages (userId, message, dateadded) values (" + message.getUserId() + ",'" + message.getMessage()+"', now());";
+    public int createCoffeeShop(CoffeeShop coffeeShop) throws SQLException {
+      String sqlInsert =  "insert into shops (name, city, state, zip, phone, description, opentime, closetime) values ("
+                + "'" + coffeeShop.getName() + "',"
+                + "'" + coffeeShop.getCity() + "',"
+                + "'" + coffeeShop.getState() + "',"
+                + "'" + coffeeShop.getZip() + "',"
+                + "'"+ coffeeShop.getPhone() + "',"
+                + "'"+ coffeeShop.getDescription() + "',"
+                + "'"+ coffeeShop.getOpentime() + "',"
++ "'"+ coffeeShop.getClosetime() + "')";
         logger.log(Level.INFO, "SQL STATMENT= " + sqlInsert);
         Statement s = createStatement();
         logger.log(Level.INFO, "attempting statement execute");
@@ -120,12 +128,12 @@ public class Model {
         logger.log(Level.INFO, "statement executed.  atempting get generated keys");
         ResultSet rs = s.getGeneratedKeys();
         logger.log(Level.INFO, "retrieved keys from statement");
-        int messageId = -1;
+        int shopid = -1;
         while (rs.next()) {
-            messageId = rs.getInt(1);   // assuming 1st column is messageid
+            shopid = rs.getInt(1);   // assuming 2nd column is shopid
         }
-        logger.log(Level.INFO, "The new Message id=" + messageId);
-        return messageId;
+        logger.log(Level.INFO, "The new shop id=" + shopid);
+        return shopid;
 
     }
 
