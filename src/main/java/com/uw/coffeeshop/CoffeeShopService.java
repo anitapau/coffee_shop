@@ -31,6 +31,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 public class CoffeeShopService {
     
     @GET
+     @Path("/{api/shops}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getCoffeeShop() throws IOException {
 //TODO return proper representation object

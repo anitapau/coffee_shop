@@ -149,9 +149,26 @@ public class Model {
         return coffeeShop;
     }
     
-     public List<CoffeeShop> getCoffeeShop() {
-        //To change body of generated methods, choose Tools | Templates.
-        return coffeeShopList;
+    public CoffeeShop[] getCoffeeShop() throws SQLException {
+        LinkedList<CoffeeShop> ll = new LinkedList<CoffeeShop>();
+        String sqlQuery = "select * from coffeeShop;";
+        Statement st = createStatement();
+        ResultSet rows = st.executeQuery(sqlQuery);
+        while (rows.next()) {
+            logger.log(Level.INFO, "Reading row...");
+            CoffeeShop shop = new CoffeeShop();
+            shop.setName(rows.getString("`name`"));
+            shop.setShopid(rows.getInt("id"));
+            shop.setCity(rows.getString("city"));
+            shop.setState(rows.getString("street"));
+            shop.setZip(rows.getInt("zip"));
+            shop.setOpentime(rows.getInt("opentime"));
+            shop.setClosetime(rows.getInt("closetime"));
+            shop.setDescription(rows.getString("description"));
+            logger.log(Level.INFO, "Adding coffeeShop to list with id=" + shop.getShopid());
+            ll.add(shop);
+        }
+        return ll.toArray(new CoffeeShop[ll.size()]);
     }
 
     public boolean updateCoffeeShop(CoffeeShop coffeeShop) throws SQLException {
