@@ -36,32 +36,22 @@ public class CoffeeShop {
     /**
      * Phone number of the coffee shop.
      */
-    private String description;
-    /**
-     * Review of the coffeeShops
-     */
-    private List<Review> Review;
-    /**
-     * Feature of the coffeeShop
-     */
-    private List<String> features;
-    
-    
+    private String description;  
      /**
      * Phone number of the coffee shop.
      */
-    private long phonenumber;
+    private long phone;
     /**
      * Opening time of the coffee shop
      */
     private int opentime;
 
-    public long getPhonenumber() {
-        return phonenumber;
+    public long getPhone() {
+        return phone;
     }
 
-    public void setPhonenumber(long phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhone(long phonenumber) {
+        this.phone = phonenumber;
     }
 
     public int getOpentime() {
@@ -80,7 +70,7 @@ public class CoffeeShop {
         this.closetime = closetime;
     }
     /**
-     * Close time of the coffee shop
+     * Close time of the coffee shop..../api/shops
      */
     private int closetime;
 
@@ -131,14 +121,4 @@ public class CoffeeShop {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public List<Review> getFeatures() {
-        return Review;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.Review = reviews;
-}
-
-    
 }

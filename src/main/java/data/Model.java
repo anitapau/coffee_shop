@@ -116,7 +116,7 @@ public class Model {
     coffeeShop.setCity(coffeeShop.getCity());
     coffeeShop.setCity(coffeeShop.getState());
     coffeeShop.setZip(coffeeShop.getZip());
-    coffeeShop.setPhonenumber(coffeeShop.getPhonenumber());
+    coffeeShop.setPhone(coffeeShop.getPhone());
     coffeeShop.setDescription(coffeeShop.getDescription());
     coffeeShop.setOpentime(coffeeShop.getOpentime());
     coffeeShop.setClosetime(coffeeShop.getClosetime());
@@ -164,7 +164,7 @@ public class Model {
                 coffeeShop.setCity(coffeeShop.getCity());
                 coffeeShop.setCity(coffeeShop.getState());
                 coffeeShop.setZip(coffeeShop.getZip());
-                coffeeShop.setPhonenumber(coffeeShop.getPhonenumber());
+                coffeeShop.setPhone(coffeeShop.getPhone());
                 coffeeShop.setDescription(coffeeShop.getDescription());
                 coffeeShop.setOpentime(coffeeShop.getOpentime());
                 coffeeShop.setClosetime(coffeeShop.getClosetime());
