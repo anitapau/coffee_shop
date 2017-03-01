@@ -23,10 +23,9 @@ create table coffeeshop (
 );
 
 create table review (
-    reviewid SERIAL primary key,
-    shopid   integer,
-    reviews   varchar(100),
-    rank     integer
-    
+    reviewid serial primary key,
+    shopid integer,
+    reviews varchar(100),
+    rating integer
 );
 
