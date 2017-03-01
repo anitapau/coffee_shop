@@ -195,11 +195,8 @@ public class Model {
 
     public void deleteCoffeeShop(int id) throws SQLException {
 
-        String sqlDelete = "delete from coffeeshop where shopid=?";
-        PreparedStatement pst = createPreparedStatement(sqlDelete);
-        pst.setInt(1, id);
-        pst.execute();
-
+        Statement sqlStatement = createStatement();
+        sqlStatement.execute("delete from coffeeshop where shop_id=" + id);
     }
 
     public CoffeeShop[] getCoffeeShop(int shopid) throws SQLException {
@@ -211,11 +208,12 @@ public class Model {
         while (rows.next()) {
             logger.log(Level.INFO, "Reading row...");
             CoffeeShop shop = new CoffeeShop();
-            shop.setName(rows.getString("`name`"));
+            shop.setName(rows.getString("name"));
             shop.setShopid(rows.getInt("shop_id"));
             shop.setCity(rows.getString("city"));
             shop.setState(rows.getString("state"));
             shop.setZip(rows.getInt("zip"));
+            shop.setPhone(rows.getLong("phone"));
             shop.setOpentime(rows.getInt("opentime"));
             shop.setClosetime(rows.getInt("closetime"));
             shop.setDescription(rows.getString("description"));
@@ -234,11 +232,12 @@ public class Model {
         while (rows.next()) {
             logger.log(Level.INFO, "Reading row...");
             CoffeeShop shop = new CoffeeShop();
-            shop.setName(rows.getString("`name`"));
+            shop.setName(rows.getString("name"));
             shop.setShopid(rows.getInt("shop_id"));
             shop.setCity(rows.getString("city"));
             shop.setState(rows.getString("state"));
             shop.setZip(rows.getInt("zip"));
+            shop.setPhone(rows.getLong("phone"));
             shop.setOpentime(rows.getInt("opentime"));
             shop.setClosetime(rows.getInt("closetime"));
             shop.setDescription(rows.getString("description"));
@@ -251,9 +250,9 @@ public class Model {
     public boolean updateCoffeeShop(CoffeeShop coffeeShop) throws SQLException {
         StringBuilder sqlQuery = new StringBuilder();
         sqlQuery.append("update coffeeshop ");
-        sqlQuery.append("set `name`=" + coffeeShop.getName() + ",");
+        sqlQuery.append("set name='" + coffeeShop.getName() + "', ");
         sqlQuery.append("city='" + coffeeShop.getCity() + "', ");
-        sqlQuery.append("`state`='" + coffeeShop.getState() + "', ");
+        sqlQuery.append("state='" + coffeeShop.getState() + "', ");
         sqlQuery.append("zip='" + coffeeShop.getZip() + "', ");
         sqlQuery.append("phone='" + coffeeShop.getPhone() + "', ");
         sqlQuery.append("opentime='" + coffeeShop.getOpentime() + "', ");

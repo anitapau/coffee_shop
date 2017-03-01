@@ -48,7 +48,7 @@ public class CoffeeShopService {
             Model db = Model.singleton();
             CoffeeShop[] shop = db.getCoffeeShop();
             for (int i = 0; i < shop.length; i++) {
-                sb.append("<tr><td>" + shop[i].getName() + "</td><td>" + shop[i].getShopid() + "</td><td>" + shop[i].getCity() + "</td><td>" + shop[i].getState() + "</td><td>" + shop[i].getZip() + "</td><td>" + shop[i].getPhone() + "</td><td>" + shop[i].getOpentime() + "</td><td>" + shop[i].getClosetime() + "</td></tr>");
+                sb.append("<tr><td>" + shop[i].getName() + "</td><td>" + shop[i].getShopid() + "</td><td>" + shop[i].getCity() + "</td><td>" + shop[i].getState() + "</td><td>" + shop[i].getZip() + "</td><td>" + shop[i].getPhone() + "</td><td>" + shop[i].getOpentime() + "</td><td>" + shop[i].getClosetime() + "</td><td>" + shop[i].getDescription()+ "</td></tr>");
             }
         } catch (Exception e) {
             sb.append("</table><br>Error getting coffeeShop: " + e.toString() + "<br>");
@@ -66,9 +66,9 @@ public class CoffeeShopService {
         sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>CoffeeShop LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>id</td><td>city</td><td>state</td><td>zip</td><td>phone</td><td>opentime</td><td>closetime</td><td>description</td></tr>");
         try {
             Model db = Model.singleton();
-            CoffeeShop[] shop = db.getCoffeeShop();
+            CoffeeShop[] shop = db.getCoffeeShop(shopId);
             for (int i = 0; i < shop.length; i++) {
-                sb.append("<tr><td>" + shop[i].getName() + "</td><td>" + shop[i].getShopid() + "</td><td>" + shop[i].getCity() + "</td><td>" + shop[i].getState() + "</td><td>" + shop[i].getZip() + "</td><td>" + shop[i].getPhone() + "</td><td>" + shop[i].getOpentime() + "</td><td>" + shop[i].getClosetime() + "</td></tr>");
+                sb.append("<tr><td>" + shop[i].getName() + "</td><td>" + shop[i].getShopid() + "</td><td>" + shop[i].getCity() + "</td><td>" + shop[i].getState() + "</td><td>" + shop[i].getZip() + "</td><td>" + shop[i].getPhone() + "</td><td>" + shop[i].getOpentime() + "</td><td>" + shop[i].getClosetime() + "</td><td>" + shop[i].getDescription()+ "</td></tr>");
             }
         } catch (Exception e) {
             sb.append("</table><br>Error getting coffeeShop: " + e.toString() + "<br>");
@@ -140,16 +140,15 @@ public class CoffeeShopService {
     @DELETE
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/{id}")
-    public String deleteCoffeeShop(@PathParam("id") String jobj) throws IOException {
+    public String deleteCoffeeShop(@PathParam("id") int id, String jobj) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        CoffeeShop shop = mapper.readValue(jobj.toString(), CoffeeShop.class);
+       // CoffeeShop shop = mapper.readValue(jobj.toString(), CoffeeShop.class);
         StringBuilder text = new StringBuilder();
         try {
             Model db = Model.singleton();
-            int shopid = shop.getShopid();
-            db.deleteCoffeeShop(shopid);
-            logger.log(Level.INFO, "Shop deleted from db=" + shopid);
-            text.append("coffeeShop id deleted with id=" + shopid);
+            db.deleteCoffeeShop(id);
+            logger.log(Level.INFO, "Shop deleted from db=" + id);
+            text.append("coffeeShop id deleted with id=" + id);
         } catch (SQLException sqle) {
             String errText = "Error deleteing shop after db connection made:\n" + sqle.getMessage() + " --- " + sqle.getSQLState() + "\n";
             logger.log(Level.SEVERE, errText);
