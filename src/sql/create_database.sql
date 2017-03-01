@@ -9,7 +9,7 @@
  */
 
 create table coffeeShop (
-    id integer primary key,
+    shop_id integer primary key,
     name varchar(40),
     city varchar(40),
     state varchar(40),
