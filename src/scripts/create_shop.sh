@@ -7,7 +7,6 @@ ENDPOINT=https://gentle-coast-59786.herokuapp.com/tcss360/coffeeShop
 #ENDPOINT=http://localhost:8084/sample_maven_web_app/tcss360/coffeeshop
 # manual deploy
 #ENDPOINT=http://localhost:8080/sample_maven_web_app-1.0-SNAPSHOT/tcss360/coffeeshop
-#curl -X POST -H "Content-Type: application/json" -d '{"name": "Shop1","description": "seattle downtown","address": "123 test"}' $ENDPOINT
 
 curl -X POST -H "Content-Type: application/json" -d '{
 	"name": "coffee Brew",
@@ -17,7 +16,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
 	"opentime":9,
 	"closetime":15,
 	"phone":"3107793311",
-	"description":"shop having spa outside.",
+	"description":"shop having spa outside."
 }' $ENDPOINT
 
 echo
