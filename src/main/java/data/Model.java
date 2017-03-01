@@ -81,91 +81,66 @@ public class Model {
         return null;
     }
 
-//    public int createReview(Review review) throws SQLException {
-//        String sqlInsert = "insert into review (review, rating) values ("
-//                + "'" + review.getReview() + "',"
-//                + "'" + review.getRating();
-//        logger.log(Level.INFO, "SQL STATMENT= " + sqlInsert);
-//        Statement s = createStatement();
-//        logger.log(Level.INFO, "attempting statement execute");
-//        s.execute(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-//        logger.log(Level.INFO, "statement executed.  atempting get generated keys");
-//        ResultSet rs = s.getGeneratedKeys();
-//        logger.log(Level.INFO, "retrieved keys from statement");
-//        int reviewId = -1;
-//        while (rs.next()) {
-//            reviewId = rs.getInt(1);   // assuming 2nd column is shopid
-//        }
-//        logger.log(Level.INFO, "The new review id=" + reviewId);
-//        return reviewId;
-//
-//    }
+    public int createReview(Review review) throws SQLException {
+        String sqlInsert = "insert into review (shopid, review, rating) values ("
+                + "'" + review.getShopid()+ "',"
+                + "'" + review.getReview() + "',"
+                + "'" + review.getRating();
+        logger.log(Level.INFO, "SQL STATMENT= " + sqlInsert);
+        Statement s = createStatement();
+        logger.log(Level.INFO, "attempting statement execute");
+        s.execute(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+        logger.log(Level.INFO, "statement executed.  atempting get generated keys");
+        ResultSet rs = s.getGeneratedKeys();
+        logger.log(Level.INFO, "retrieved keys from statement");
+        int reviewId = -1;
+        while (rs.next()) {
+            reviewId = rs.getInt("reviewid");   // assuming 2nd column is shopid
+        }
+        logger.log(Level.INFO, "The new review id=" + reviewId);
+        return reviewId;
+    }
 
-//    public Review[] getReview(int reviewId, int shopId) throws SQLException {
-//        //To change body of generated methods, choose Tools | Templates.
-//        LinkedList<Review> ll = new LinkedList<Review>();
-//        //CoffeeShop shop = new CoffeeShop();
-//        String sqlQuery = "select * from coffeeShop where id = " + shopId + ";";
-//        String sqlQuery = "select * from review list where id = " + reviewId + ";";
-//        Statement st = createStatement();
-//        ResultSet rows = st.executeQuery(sqlQuery);
-//        while (rows.next()) {
-//            logger.log(Level.INFO, "Reading row...");
-//            Review review = new Review(reviewId, shopId);
-//            review.setReview(rows.getString("`name`"));
-//            review.setRating(rows.getInt("rate"));
-//
-//            logger.log(Level.INFO, "Adding review to list with id=" + review.getReviewId());
-//            logger.log(Level.INFO, "Adding review to a coffeeShop with id=" + review.getShopid());
-//            ll.add(review);
-//        }
-//        return ll.toArray(new Review[ll.size()]);
-//
-//    }
-
-/** public Review[] getReview() throws SQLException {
+    public Review[] getReview(int reviewId) throws SQLException {
+        //To change body of generated methods, choose Tools | Templates.
         LinkedList<Review> ll = new LinkedList<Review>();
-        String sqlQuery = "select * from coffeeShop;";
+        //CoffeeShop shop = new CoffeeShop();
+        String sqlQuery = "select * from review where reviewid = " + reviewId + ";";
         Statement st = createStatement();
         ResultSet rows = st.executeQuery(sqlQuery);
-        while (rows.next()) {
+           while (rows.next()) {
             logger.log(Level.INFO, "Reading row...");
             Review review = new Review();
-            review.setReview(rows.getString("`name`"));
+            review.setReview(rows.getString("reviews"));
             review.setRating(rows.getInt("rating"));
-            review.setReviewId(rows.getInt("reviewId"));
-            review.setShopid(rows.getInt("shopId"));
-            
-            logger.log(Level.INFO, "Adding review to list with id=" + review.getReviewId());
-            logger.log(Level.INFO, "Adding review to a ID coffeeShop =" + review.getShopid());
-
+            review.setShopid(rows.getInt("shopid"));
+            logger.log(Level.INFO, "Adding coffeeShop to list with id=" + review.getShopid());
             ll.add(review);
         }
-        return ll.toArray(new Review[ll.size()]);
+           return ll.toArray(new Review[ll.size()]);
     }
-**/
 
     public void deleteReview(int reviewID) throws SQLException {
 
-        String sqlDelete = "delete from coffeeShop where reviewId=?";
+        String sqlDelete = "delete from review where reviewid=?";
         PreparedStatement pst = createPreparedStatement(sqlDelete);
         pst.setInt(1, reviewID);
         pst.execute();
 
     }
 
-//    public boolean updateReview(Review review) throws SQLException {
-//        StringBuilder sqlQuery = new StringBuilder();
-//        sqlQuery.append("update coffeeShop ");
-//        sqlQuery.append("set `review`=" + review.getReview() + ",");
-//        sqlQuery.append("rating='" + review.getRating() + "', ");
-//        sqlQuery.append("where coffeeshop id=" + review.getShopid() + ";");
-//        sqlQuery.append("where review id=" + review.getReviewId() + ";");
-//        Statement st = createStatement();
-//        logger.log(Level.INFO, "UPDATE SQL=" + sqlQuery.toString());
-//        return st.execute(sqlQuery.toString());
-//
-//    }
+    public boolean updateReview(Review review) throws SQLException {
+        StringBuilder sqlQuery = new StringBuilder();
+        sqlQuery.append("update review ");
+        sqlQuery.append("set reviews=" + review.getReview() + ", ");
+        sqlQuery.append("rating='" + review.getRating() + "', ");
+        sqlQuery.append("shopid='" + review.getShopid() + "', ");
+        sqlQuery.append("where reviewid=" + review.getReviewid() + ";");
+        Statement st = createStatement();
+        logger.log(Level.INFO, "UPDATE SQL=" + sqlQuery.toString());
+        return st.execute(sqlQuery.toString());
+
+    }
 
     public int createCoffeeShop(CoffeeShop coffeeShop) throws SQLException {
         String sqlInsert = "insert into coffeeshop (name, city, state, zip, phone, description, opentime, closetime) values ("
@@ -263,5 +238,26 @@ public class Model {
         logger.log(Level.INFO, "UPDATE SQL=" + sqlQuery.toString());
         return st.execute(sqlQuery.toString());
 
+    }
+
+    public Review[] getReview() throws SQLException { //To change body of generated methods, choose Tools | Templates.
+           //To change body of generated methods, choose Tools | Templates.
+        LinkedList<Review> ll = new LinkedList<Review>();
+        //CoffeeShop shop = new CoffeeShop();
+        String sqlQuery = "select * from review ;";
+        Statement st = createStatement();
+        ResultSet rows = st.executeQuery(sqlQuery);
+           while (rows.next()) {
+            logger.log(Level.INFO, "Reading row...");
+            Review review = new Review();
+            review.setReview(rows.getString("reviews"));
+            review.setRating(rows.getInt("rating"));
+            review.setShopid(rows.getInt("shopid"));
+            review.setReviewid(rows.getInt("reviewid"));
+            logger.log(Level.INFO, "Adding review to list with id=" + review.getReviewid());
+            ll.add(review);
+        }
+           return ll.toArray(new Review[ll.size()]);
+        
     }
 }

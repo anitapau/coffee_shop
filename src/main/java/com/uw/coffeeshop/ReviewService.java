@@ -39,16 +39,16 @@ public class ReviewService {
     private UriInfo context;
 
     @GET
-    @Path("/api/review")
+    @Path("/{reviewid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getReview() throws IOException {
+    public String getReview(@PathParam("reviewid") int reviewId) throws IOException {
        StringBuilder sb = new StringBuilder();
-        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>REVIEW LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>reviewId</td><td>shopId</td><td>rating</td></tr>");
+        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>REVIEW LIST:</b><br><br><table cellpadding=10 border=1><tr><td>reviews</td><td>reviewId</td><td>shopId</td><td>rating</td></tr>");
         try {
             Model db = Model.singleton();
-            Review[] review = db.getReview();
+            Review[] review = db.getReview(reviewId);
             for (int i = 0; i < review.length; i++) {
-                sb.append("<tr><td>" + review[i].getReview() + "</td><td>" + review[i].getReviewId() + "</td><td>" + review[i].getShopid() + "</td><td>" + review[i].getRating() + "</td></tr>");
+                sb.append("<tr><td>" + review[i].getReview() + "</td><td>" + review[i].getReviewid()+ "</td><td>" + review[i].getShopid() + "</td><td>" + review[i].getRating() + "</td></tr>");
             }
         } catch (Exception e) {
             sb.append("</table><br>Error getting review: " + e.toString() + "<br>");
@@ -57,25 +57,27 @@ public class ReviewService {
        return sb.toString();
 
     }
-
-   @GET
-   @Path("/{reviewid}")
+    
+    
+       @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getReview(@PathParam("reviewid") int reviewId) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>REVIEW LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>reviewId</td><td>shopId</td><td>rating</td></tr>");
+    public String getReview() throws IOException {
+       StringBuilder sb = new StringBuilder();
+        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>REVIEW LIST:</b><br><br><table cellpadding=10 border=1><tr><td>reviews</td><td>reviewId</td><td>shopId</td><td>rating</td></tr>");
         try {
             Model db = Model.singleton();
             Review[] review = db.getReview();
-           for (int i = 0; i < review.length; i++) {
-                sb.append("<tr><td>" + review[i].getReview() + "</td><td>" + review[i].getReviewId() + "</td><td>" + review[i].getShopid() + "</td><td>" + review[i].getRating() + "</td></tr>");
-           }
-       } catch (Exception e) {
-          sb.append("</table><br>Error getting review: " + e.toString() + "<br>");
+            for (int i = 0; i < review.length; i++) {
+                sb.append("<tr><td>" + review[i].getReview() + "</td><td>" + review[i].getReviewid()+ "</td><td>" + review[i].getShopid() + "</td><td>" + review[i].getRating() + "</td></tr>");
+            }
+        } catch (Exception e) {
+            sb.append("</table><br>Error getting review: " + e.toString() + "<br>");
         }
         sb.append("</table></body></html>");
-        return sb.toString();
+       return sb.toString();
+
     }
+    
 
     @PUT
    @Produces(MediaType.APPLICATION_JSON)
@@ -86,10 +88,9 @@ public class ReviewService {
         StringBuilder text = new StringBuilder();
         try {
            Model db = Model.singleton();
-          int reviewId = review.getReviewId();
            db.updateReview(review);
-          logger.log(Level.INFO, "update contents with review id=" + reviewId);
-          text.append("shop contents updated with review id=" + reviewId + "\n");
+          logger.log(Level.INFO, "update contents with review id=" + review.getReviewid());
+          text.append("review contents updated with review id=" + review.getReviewid() + "\n");
         } catch (SQLException sqle) {
             String errText = "Error updating review after db connection made:\n" + sqle.getMessage() + " --- " + sqle.getSQLState() + "\n";
             logger.log(Level.SEVERE, errText);
@@ -113,7 +114,7 @@ public class ReviewService {
         text.append("The JSON obj:" + jobj.toString() + "\n");
         text.append("review content is  " + review.getReview()+ "\n");
         text.append("review from coffeeshop ID is " + review.getShopid() + "\n");
-        text.append("reviewId is " + review.getReviewId() + "\n");
+        text.append("reviewid is " + review.getReviewid() + "\n");
         text.append("review rating is " + review.getRating() + "\n");
         
         try {
@@ -141,7 +142,7 @@ public class ReviewService {
         StringBuilder text = new StringBuilder();
        try {
             Model db = Model.singleton();
-           int reviewId = review.getReviewId();
+           int reviewId = review.getReviewid();
            db.deleteReview(reviewId);
             logger.log(Level.INFO, "review deleted from db=" + reviewId);
            text.append("review id deleted with id=" + reviewId);
