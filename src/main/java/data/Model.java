@@ -30,8 +30,6 @@ public class Model {
     private static Model instance;
     private Connection conn;
     List<Review> reviewList;
-    List<CoffeeShop> coffeeShopList;
-    private static Integer coffeeShopId = 1;
 
     public static Model singleton() throws Exception {
         if (instance == null) {
@@ -51,7 +49,6 @@ public class Model {
         conn = DriverManager.getConnection(dbUrl);
         logger.log(Level.INFO, "db connection ok.");
         reviewList = new ArrayList<>();
-        coffeeShopList = new ArrayList<>();
     }
 
     private Connection getConnection() {
@@ -112,15 +109,15 @@ public class Model {
     }
 
     public int createCoffeeShop(CoffeeShop coffeeShop) throws SQLException {
-      String sqlInsert =  "insert into shops (name, city, state, zip, phone, description, opentime, closetime) values ("
+        String sqlInsert = "insert into shops (name, city, state, zip, phone, description, opentime, closetime) values ("
                 + "'" + coffeeShop.getName() + "',"
                 + "'" + coffeeShop.getCity() + "',"
                 + "'" + coffeeShop.getState() + "',"
                 + "'" + coffeeShop.getZip() + "',"
-                + "'"+ coffeeShop.getPhone() + "',"
-                + "'"+ coffeeShop.getDescription() + "',"
-                + "'"+ coffeeShop.getOpentime() + "',"
-+ "'"+ coffeeShop.getClosetime() + "')";
+                + "'" + coffeeShop.getPhone() + "',"
+                + "'" + coffeeShop.getDescription() + "',"
+                + "'" + coffeeShop.getOpentime() + "',"
+                + "'" + coffeeShop.getClosetime() + "')";
         logger.log(Level.INFO, "SQL STATMENT= " + sqlInsert);
         Statement s = createStatement();
         logger.log(Level.INFO, "attempting statement execute");
@@ -130,7 +127,7 @@ public class Model {
         logger.log(Level.INFO, "retrieved keys from statement");
         int shopid = -1;
         while (rs.next()) {
-            shopid = rs.getInt(1);   // assuming 2nd column is shopid
+            shopid = rs.getInt("shop_id");   // assuming 2nd column is shopid
         }
         logger.log(Level.INFO, "The new shop id=" + shopid);
         return shopid;
@@ -149,14 +146,14 @@ public class Model {
     public CoffeeShop[] getCoffeeShop(int shopid) throws SQLException {
         //To change body of generated methods, choose Tools | Templates.
         LinkedList<CoffeeShop> ll = new LinkedList<CoffeeShop>();
-        String sqlQuery = "select * from coffeeShop where id = " + shopid + ";";
+        String sqlQuery = "select * from coffeeShop where shop_id = " + shopid + ";";
         Statement st = createStatement();
         ResultSet rows = st.executeQuery(sqlQuery);
         while (rows.next()) {
             logger.log(Level.INFO, "Reading row...");
             CoffeeShop shop = new CoffeeShop();
             shop.setName(rows.getString("`name`"));
-            shop.setShopid(rows.getInt("id"));
+            shop.setShopid(rows.getInt("shop_id"));
             shop.setCity(rows.getString("city"));
             shop.setState(rows.getString("state"));
             shop.setZip(rows.getInt("zip"));
@@ -179,7 +176,7 @@ public class Model {
             logger.log(Level.INFO, "Reading row...");
             CoffeeShop shop = new CoffeeShop();
             shop.setName(rows.getString("`name`"));
-            shop.setShopid(rows.getInt("id"));
+            shop.setShopid(rows.getInt("shop_id"));
             shop.setCity(rows.getString("city"));
             shop.setState(rows.getString("state"));
             shop.setZip(rows.getInt("zip"));
@@ -203,7 +200,7 @@ public class Model {
         sqlQuery.append("opentime='" + coffeeShop.getOpentime() + "', ");
         sqlQuery.append("closetime='" + coffeeShop.getClosetime() + "', ");
         sqlQuery.append("description='" + coffeeShop.getDescription() + "' ");
-        sqlQuery.append("where id=" + coffeeShop.getShopid() + ";");
+        sqlQuery.append("where shop_id=" + coffeeShop.getShopid() + ";");
         Statement st = createStatement();
         logger.log(Level.INFO, "UPDATE SQL=" + sqlQuery.toString());
         return st.execute(sqlQuery.toString());

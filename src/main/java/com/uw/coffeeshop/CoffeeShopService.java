@@ -63,7 +63,7 @@ public class CoffeeShopService {
     @Produces(MediaType.APPLICATION_JSON)
     public String getCoffeeShop(@PathParam("shopId") int shopId) throws IOException {
         StringBuilder sb = new StringBuilder();
-        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>MESSAGE LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>id</td><td>city</td><td>state</td><td>zip</td><td>phone</td><td>opentime</td><td>closetime</td><td>description</td></tr>");
+        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>CoffeeShop LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>id</td><td>city</td><td>state</td><td>zip</td><td>phone</td><td>opentime</td><td>closetime</td><td>description</td></tr>");
         try {
             Model db = Model.singleton();
             CoffeeShop[] shop = db.getCoffeeShop();
@@ -89,7 +89,7 @@ public class CoffeeShopService {
             int shopId = shop.getShopid();
             db.updateCoffeeShop(shop);
             logger.log(Level.INFO, "update contents with shop id=" + shopId);
-            text.append("shop contents updated with hop id=" + shopId + "\n");
+            text.append("shop contents updated with shop id=" + shopId + "\n");
         } catch (SQLException sqle) {
             String errText = "Error updating shop after db connection made:\n" + sqle.getMessage() + " --- " + sqle.getSQLState() + "\n";
             logger.log(Level.SEVERE, errText);

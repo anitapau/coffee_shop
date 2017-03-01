@@ -4,20 +4,29 @@
  * and open the template in the editor.
  */
 /**
- * Author:  wlloyd
+ * Author:  anitapau
  * Created: Feb 4, 2017
  */
 
-create table users (
+create table coffeeShop (
+    id integer primary key,
     name varchar(40),
-    age integer,
-    userid serial primary key
+    city varchar(40),
+    state varchar(40),
+    zip integer,
+    phone integer,
+    opentime integer,
+    closetime integer,
+    description varchar(100)
+
+    
 );
 
-create table messages (
-    messageid serial primary key,
-    userid integer,
-    message varchar(255),
-    dateadded timestamp
+create table review (
+    reviewid integer primary key,
+    shopid   integer,
+    reviews   varchar(100),
+    rank     integer
+    
 );
 
