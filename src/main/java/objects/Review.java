@@ -16,7 +16,7 @@ public class Review {
     /**
      * The id associated with this review.
      */
-    private Integer reviewid;
+    private Integer reviewId;
     /**
      * A reviews string representation of the review.
      */
@@ -25,11 +25,21 @@ public class Review {
     /**
      * Shop id associated with this review.
      */
-    private Integer shopid;
+    private Integer shopId;
+    /**
+     * rating associated with this review.
+     */
+    private Integer rating;
 
-    public Review(String review, int shopid) {
+    public Review(int reviewId, int shopid) {
         this.review = review;
-        this.shopid = shopid;
+        this.shopId = shopid;
+        this.reviewId = reviewId;
+        this.rating = rating;
+    }
+
+    public Review() {
+        
     }
 
     // GETTERS AND SETTERS
@@ -41,20 +51,28 @@ public class Review {
         this.review = review;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     public int getReviewId() {
-        return reviewid;
+        return reviewId;
     }
 
     public void setReviewId(Integer reviewid) {
-        this.reviewid = reviewid;
+        this.reviewId = reviewid;
     }
 
     public Integer getShopid() {
-        return shopid;
+        return shopId;
     }
 
     public void setShopid(Integer shopid) {
-        this.shopid = shopid;
+        this.shopId = shopid;
     }
 
 }
