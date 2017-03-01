@@ -37,7 +37,7 @@ public class ReviewService {
         try {
 
             Model db = Model.singleton();
-            reviews = db.getReviews();
+            //reviews = db.getReviews();
 
         } catch (Exception ex) {
             Logger.getLogger(ReviewService.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,7 +54,7 @@ public class ReviewService {
         Model db = null;
         try {
             db = Model.singleton();
-            db.createReview(user);
+           // db.createReview(user);
         } catch (Exception ex) {
             Logger.getLogger(ReviewService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -72,7 +72,7 @@ public class ReviewService {
         try {
             db = Model.singleton();
             //String userid = review.getName();
-            db.deleteReview(jobj);
+            //db.deleteReview(jobj);
             // logger.log(Level.INFO, "user deleted from db=" + userid);
             // text.append("User id deleted with name=" + userid);
         } catch (Exception ex) {
@@ -93,7 +93,7 @@ public class ReviewService {
             db = Model.singleton();
             //int userid = user.getRating();
             //  String description = user.getDescription();
-            db.updateReview(user);
+           // db.updateReview(user);
             //logger.log(Level.INFO, "update user with userid=" + userid);
             //  text.append("User id updated with user name=" + user.getName() + "\n");
         } catch (Exception ex) {

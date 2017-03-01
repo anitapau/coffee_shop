@@ -81,49 +81,49 @@ public class Model {
         return null;
     }
 
-    public int createReview(Review review) throws SQLException {
-        String sqlInsert = "insert into review (review, rating) values ("
-                + "'" + review.getReview() + "',"
-                + "'" + review.getRating();
-        logger.log(Level.INFO, "SQL STATMENT= " + sqlInsert);
-        Statement s = createStatement();
-        logger.log(Level.INFO, "attempting statement execute");
-        s.execute(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-        logger.log(Level.INFO, "statement executed.  atempting get generated keys");
-        ResultSet rs = s.getGeneratedKeys();
-        logger.log(Level.INFO, "retrieved keys from statement");
-        int reviewId = -1;
-        while (rs.next()) {
-            reviewId = rs.getInt(1);   // assuming 2nd column is shopid
-        }
-        logger.log(Level.INFO, "The new review id=" + reviewId);
-        return reviewId;
+//    public int createReview(Review review) throws SQLException {
+//        String sqlInsert = "insert into review (review, rating) values ("
+//                + "'" + review.getReview() + "',"
+//                + "'" + review.getRating();
+//        logger.log(Level.INFO, "SQL STATMENT= " + sqlInsert);
+//        Statement s = createStatement();
+//        logger.log(Level.INFO, "attempting statement execute");
+//        s.execute(sqlInsert, Statement.RETURN_GENERATED_KEYS);
+//        logger.log(Level.INFO, "statement executed.  atempting get generated keys");
+//        ResultSet rs = s.getGeneratedKeys();
+//        logger.log(Level.INFO, "retrieved keys from statement");
+//        int reviewId = -1;
+//        while (rs.next()) {
+//            reviewId = rs.getInt(1);   // assuming 2nd column is shopid
+//        }
+//        logger.log(Level.INFO, "The new review id=" + reviewId);
+//        return reviewId;
+//
+//    }
 
-    }
+//    public Review[] getReview(int reviewId, int shopId) throws SQLException {
+//        //To change body of generated methods, choose Tools | Templates.
+//        LinkedList<Review> ll = new LinkedList<Review>();
+//        //CoffeeShop shop = new CoffeeShop();
+//        String sqlQuery = "select * from coffeeShop where id = " + shopId + ";";
+//        String sqlQuery = "select * from review list where id = " + reviewId + ";";
+//        Statement st = createStatement();
+//        ResultSet rows = st.executeQuery(sqlQuery);
+//        while (rows.next()) {
+//            logger.log(Level.INFO, "Reading row...");
+//            Review review = new Review(reviewId, shopId);
+//            review.setReview(rows.getString("`name`"));
+//            review.setRating(rows.getInt("rate"));
+//
+//            logger.log(Level.INFO, "Adding review to list with id=" + review.getReviewId());
+//            logger.log(Level.INFO, "Adding review to a coffeeShop with id=" + review.getShopid());
+//            ll.add(review);
+//        }
+//        return ll.toArray(new Review[ll.size()]);
+//
+//    }
 
-    public Review[] getReview(int reviewId, int shopId) throws SQLException {
-        //To change body of generated methods, choose Tools | Templates.
-        LinkedList<Review> ll = new LinkedList<Review>();
-        //CoffeeShop shop = new CoffeeShop();
-        String sqlQuery = "select * from coffeeShop where id = " + shopId + ";";
-        String sqlQuery = "select * from review list where id = " + reviewId + ";";
-        Statement st = createStatement();
-        ResultSet rows = st.executeQuery(sqlQuery);
-        while (rows.next()) {
-            logger.log(Level.INFO, "Reading row...");
-            Review review = new Review(reviewId, shopId);
-            review.setReview(rows.getString("`name`"));
-            review.setRating(rows.getInt("rate"));
-
-            logger.log(Level.INFO, "Adding review to list with id=" + review.getReviewId());
-            logger.log(Level.INFO, "Adding review to a coffeeShop with id=" + review.getShopid());
-            ll.add(review);
-        }
-        return ll.toArray(new Review[ll.size()]);
-
-    }
-
-public Review[] getReview() throws SQLException {
+/** public Review[] getReview() throws SQLException {
         LinkedList<Review> ll = new LinkedList<Review>();
         String sqlQuery = "select * from coffeeShop;";
         Statement st = createStatement();
@@ -143,6 +143,7 @@ public Review[] getReview() throws SQLException {
         }
         return ll.toArray(new Review[ll.size()]);
     }
+**/
 
     public void deleteReview(int reviewID) throws SQLException {
 
@@ -153,18 +154,18 @@ public Review[] getReview() throws SQLException {
 
     }
 
-    public boolean updateReview(Review review) throws SQLException {
-        StringBuilder sqlQuery = new StringBuilder();
-        sqlQuery.append("update coffeeShop ");
-        sqlQuery.append("set `review`=" + review.getReview() + ",");
-        sqlQuery.append("rating='" + review.getRating() + "', ");
-        sqlQuery.append("where coffeeshop id=" + review.getShopid() + ";");
-        sqlQuery.append("where review id=" + review.getReviewId() + ";");
-        Statement st = createStatement();
-        logger.log(Level.INFO, "UPDATE SQL=" + sqlQuery.toString());
-        return st.execute(sqlQuery.toString());
-
-    }
+//    public boolean updateReview(Review review) throws SQLException {
+//        StringBuilder sqlQuery = new StringBuilder();
+//        sqlQuery.append("update coffeeShop ");
+//        sqlQuery.append("set `review`=" + review.getReview() + ",");
+//        sqlQuery.append("rating='" + review.getRating() + "', ");
+//        sqlQuery.append("where coffeeshop id=" + review.getShopid() + ";");
+//        sqlQuery.append("where review id=" + review.getReviewId() + ";");
+//        Statement st = createStatement();
+//        logger.log(Level.INFO, "UPDATE SQL=" + sqlQuery.toString());
+//        return st.execute(sqlQuery.toString());
+//
+//    }
 
     public int createCoffeeShop(CoffeeShop coffeeShop) throws SQLException {
         String sqlInsert = "insert into shops (name, city, state, zip, phone, description, opentime, closetime) values ("
