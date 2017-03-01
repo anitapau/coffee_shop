@@ -40,7 +40,7 @@ public class CoffeeShopService {
 
     @GET
     @Path("/api/shops")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String getCoffeeShop() throws IOException {
         StringBuilder sb = new StringBuilder();
         sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>MESSAGE LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>id</td><td>city</td><td>state</td><td>zip</td><td>phone</td><td>opentime</td><td>closetime</td><td>description</td></tr>");
@@ -60,7 +60,7 @@ public class CoffeeShopService {
 
     @GET
     @Path("/{shopId}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String getCoffeeShop(@PathParam("shopId") int shopId) throws IOException {
         StringBuilder sb = new StringBuilder();
         sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>CoffeeShop LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>id</td><td>city</td><td>state</td><td>zip</td><td>phone</td><td>opentime</td><td>closetime</td><td>description</td></tr>");
@@ -78,7 +78,7 @@ public class CoffeeShopService {
     }
 
     @PUT
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_JSON)
     public String updateCoffeeShop(String jobj) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -103,7 +103,7 @@ public class CoffeeShopService {
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_JSON)
     public String createCoffeeShop(String jobj) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -119,7 +119,6 @@ public class CoffeeShopService {
         text.append("CoffeeShop opentime is " + shop.getOpentime()+ "\n");
         text.append("CoffeeShop closetime is " + shop.getClosetime()+ "\n");
         text.append("CoffeeShop description is " + shop.getDescription()+ "\n");
-        text.append("CoffeeShop id for the shop is " + shop.getShopid()+ "\n");
         try {
             Model db = Model.singleton();
             int shopid = db.createCoffeeShop(shop);

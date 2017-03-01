@@ -40,7 +40,7 @@ public class ReviewService {
 
     @GET
     @Path("/{reviewid}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String getReview(@PathParam("reviewid") int reviewId) throws IOException {
        StringBuilder sb = new StringBuilder();
         sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>REVIEW LIST:</b><br><br><table cellpadding=10 border=1><tr><td>reviews</td><td>reviewId</td><td>shopId</td><td>rating</td></tr>");
@@ -80,7 +80,7 @@ public class ReviewService {
     
 
     @PUT
-   @Produces(MediaType.APPLICATION_JSON)
+   @Produces(MediaType.TEXT_PLAIN)
    @Consumes(MediaType.APPLICATION_JSON)
    public String updateReview(String jobj) throws IOException {
        ObjectMapper mapper = new ObjectMapper();
@@ -104,7 +104,7 @@ public class ReviewService {
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_JSON)
    public String createReview(String jobj) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
