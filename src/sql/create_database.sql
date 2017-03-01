@@ -8,7 +8,7 @@
  * Created: Feb 4, 2017
  */
 
-create table coffeeShop (
+create table coffeeshop (
     shop_id integer primary key,
     name varchar(40),
     city varchar(40),

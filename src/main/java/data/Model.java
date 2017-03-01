@@ -168,7 +168,7 @@ public class Model {
 //    }
 
     public int createCoffeeShop(CoffeeShop coffeeShop) throws SQLException {
-        String sqlInsert = "insert into shops (name, city, state, zip, phone, description, opentime, closetime) values ("
+        String sqlInsert = "insert into coffeeshop (name, city, state, zip, phone, description, opentime, closetime) values ("
                 + "'" + coffeeShop.getName() + "',"
                 + "'" + coffeeShop.getCity() + "',"
                 + "'" + coffeeShop.getState() + "',"
@@ -195,7 +195,7 @@ public class Model {
 
     public void deleteCoffeeShop(int id) throws SQLException {
 
-        String sqlDelete = "delete from coffeeShop where shopid=?";
+        String sqlDelete = "delete from coffeeshop where shopid=?";
         PreparedStatement pst = createPreparedStatement(sqlDelete);
         pst.setInt(1, id);
         pst.execute();
@@ -205,7 +205,7 @@ public class Model {
     public CoffeeShop[] getCoffeeShop(int shopid) throws SQLException {
         //To change body of generated methods, choose Tools | Templates.
         LinkedList<CoffeeShop> ll = new LinkedList<CoffeeShop>();
-        String sqlQuery = "select * from coffeeShop where shop_id = " + shopid + ";";
+        String sqlQuery = "select * from coffeeshop where shop_id = " + shopid + ";";
         Statement st = createStatement();
         ResultSet rows = st.executeQuery(sqlQuery);
         while (rows.next()) {
@@ -228,7 +228,7 @@ public class Model {
 
     public CoffeeShop[] getCoffeeShop() throws SQLException {
         LinkedList<CoffeeShop> ll = new LinkedList<CoffeeShop>();
-        String sqlQuery = "select * from coffeeShop;";
+        String sqlQuery = "select * from coffeeshop;";
         Statement st = createStatement();
         ResultSet rows = st.executeQuery(sqlQuery);
         while (rows.next()) {
@@ -250,7 +250,7 @@ public class Model {
 
     public boolean updateCoffeeShop(CoffeeShop coffeeShop) throws SQLException {
         StringBuilder sqlQuery = new StringBuilder();
-        sqlQuery.append("update coffeeShop ");
+        sqlQuery.append("update coffeeshop ");
         sqlQuery.append("set `name`=" + coffeeShop.getName() + ",");
         sqlQuery.append("city='" + coffeeShop.getCity() + "', ");
         sqlQuery.append("`state`='" + coffeeShop.getState() + "', ");
