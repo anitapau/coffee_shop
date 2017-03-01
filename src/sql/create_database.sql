@@ -9,7 +9,7 @@
  */
 
 create table coffeeshop (
-    shop_id integer primary key,
+    shop_id SERIAL primary key,
     name varchar(40),
     city varchar(40),
     state varchar(40),
@@ -23,7 +23,7 @@ create table coffeeshop (
 );
 
 create table review (
-    reviewid integer primary key,
+    reviewid SERIAL primary key,
     shopid   integer,
     reviews   varchar(100),
     rank     integer
