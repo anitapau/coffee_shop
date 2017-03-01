@@ -59,9 +59,9 @@ public class ReviewService {
     }
 
    @GET
-   @Path("/{reviewId}")
+   @Path("/{reviewid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getReview(@PathParam("reviewId") int reviewId) throws IOException {
+    public String getReview(@PathParam("reviewid") int reviewId) throws IOException {
         StringBuilder sb = new StringBuilder();
         sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>MESSAGE LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>reviewId</td><td>shopId</td><td>rating</td></tr>");
         try {
