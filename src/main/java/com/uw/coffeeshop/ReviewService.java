@@ -43,7 +43,7 @@ public class ReviewService {
     @Produces(MediaType.APPLICATION_JSON)
     public String getReview() throws IOException {
        StringBuilder sb = new StringBuilder();
-        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>MESSAGE LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>reviewId</td><td>shopId</td><td>rating</td></tr>");
+        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>REVIEW LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>reviewId</td><td>shopId</td><td>rating</td></tr>");
         try {
             Model db = Model.singleton();
             Review[] review = db.getReview();
@@ -63,7 +63,7 @@ public class ReviewService {
     @Produces(MediaType.APPLICATION_JSON)
     public String getReview(@PathParam("reviewid") int reviewId) throws IOException {
         StringBuilder sb = new StringBuilder();
-        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>MESSAGE LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>reviewId</td><td>shopId</td><td>rating</td></tr>");
+        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>REVIEW LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>reviewId</td><td>shopId</td><td>rating</td></tr>");
         try {
             Model db = Model.singleton();
             Review[] review = db.getReview();
