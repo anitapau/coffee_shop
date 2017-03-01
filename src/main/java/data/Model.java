@@ -82,10 +82,10 @@ public class Model {
     }
 
     public int createReview(Review review) throws SQLException {
-        String sqlInsert = "insert into review (shopid, review, rating) values ("
+        String sqlInsert = "insert into review (shopid, reviews, rating) values ("
                 + "'" + review.getShopid()+ "',"
                 + "'" + review.getReview() + "',"
-                + "'" + review.getRating();
+                + "'" + review.getRating()+"');";
         logger.log(Level.INFO, "SQL STATMENT= " + sqlInsert);
         Statement s = createStatement();
         logger.log(Level.INFO, "attempting statement execute");
@@ -122,19 +122,17 @@ public class Model {
 
     public void deleteReview(int reviewID) throws SQLException {
 
-        String sqlDelete = "delete from review where reviewid=?";
-        PreparedStatement pst = createPreparedStatement(sqlDelete);
-        pst.setInt(1, reviewID);
-        pst.execute();
+        Statement sqlStatement = createStatement();
+        sqlStatement.execute("delete from review where reviewid=" + reviewID);
 
     }
 
     public boolean updateReview(Review review) throws SQLException {
         StringBuilder sqlQuery = new StringBuilder();
         sqlQuery.append("update review ");
-        sqlQuery.append("set reviews=" + review.getReview() + ", ");
+        sqlQuery.append("set reviews='" + review.getReview() + "', ");
         sqlQuery.append("rating='" + review.getRating() + "', ");
-        sqlQuery.append("shopid='" + review.getShopid() + "', ");
+        sqlQuery.append("shopid='" + review.getShopid() + "' ");
         sqlQuery.append("where reviewid=" + review.getReviewid() + ";");
         Statement st = createStatement();
         logger.log(Level.INFO, "UPDATE SQL=" + sqlQuery.toString());

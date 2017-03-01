@@ -112,10 +112,10 @@ public class ReviewService {
 
         StringBuilder text = new StringBuilder();
         text.append("The JSON obj:" + jobj.toString() + "\n");
-        text.append("review content is  " + review.getReview()+ "\n");
-        text.append("review from coffeeshop ID is " + review.getShopid() + "\n");
-        text.append("reviewid is " + review.getReviewid() + "\n");
-        text.append("review rating is " + review.getRating() + "\n");
+        text.append("Review reviews is  " + review.getReview()+ "\n");
+        text.append("Review shopid is " + review.getShopid() + "\n");
+        text.append("Review reviewid is" + review.getReviewid() + "\n");
+        text.append("Review rating is " + review.getRating() + "\n");
         
         try {
             Model db = Model.singleton();
@@ -123,7 +123,7 @@ public class ReviewService {
             logger.log(Level.INFO, "Review persisted to db as id=" + reviewId);
             text.append("Review id persisted with id=" + reviewId);
         } catch (SQLException sqle) {
-           String errText = "Error persisting shop after db connection made:\n" + sqle.getMessage() + " --- " + sqle.getSQLState() + "\n";
+           String errText = "Error persisting review after db connection made:\n" + sqle.getMessage() + " --- " + sqle.getSQLState() + "\n";
             logger.log(Level.SEVERE, errText);
             text.append(errText);
         } catch (Exception e) {
@@ -136,16 +136,14 @@ public class ReviewService {
     @DELETE
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/{id}")
-    public String deleteReview(@PathParam("id") String jobj) throws IOException {
+    public String deleteReview(@PathParam("id") int id) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        Review review = mapper.readValue(jobj.toString(), Review.class);
         StringBuilder text = new StringBuilder();
        try {
             Model db = Model.singleton();
-           int reviewId = review.getReviewid();
-           db.deleteReview(reviewId);
-            logger.log(Level.INFO, "review deleted from db=" + reviewId);
-           text.append("review id deleted with id=" + reviewId);
+           db.deleteReview(id);
+            logger.log(Level.INFO, "review deleted from db=" + id);
+           text.append("review id deleted with id=" + id);
         } catch (SQLException sqle) {
             String errText = "Error deleteing review after db connection made:\n" + sqle.getMessage() + " --- " + sqle.getSQLState() + "\n";
            logger.log(Level.SEVERE, errText);
