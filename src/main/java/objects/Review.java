@@ -41,6 +41,9 @@ public class Review {
     public Review() {
         
     }
+     public Review(String review) {
+        
+    }
 
     // GETTERS AND SETTERS
     public String getReview() {
