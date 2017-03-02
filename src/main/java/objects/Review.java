@@ -20,7 +20,7 @@ public class Review {
     /**
      * A reviews string representation of the review.
      */
-    private String reviews;
+    private String review;
 
     /**
      * Shop id associated with this review.
@@ -36,18 +36,18 @@ public class Review {
 
     // GETTERS AND SETTERS
     public String getReview() {
-        return reviews;
+        return review;
     }
 
     public void setReview(String review) {
-        this.reviews = review;
+        this.review = review;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 

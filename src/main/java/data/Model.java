@@ -83,7 +83,7 @@ public class Model {
 
     public int createReview(Review review) throws SQLException {
         String sqlInsert = "insert into review (shopid, reviews, rating) values ("
-                + "'" + review.getShopid()+ "',"
+                + "'" + review.getShopid()+ "', "
                 + "'" + review.getReview() + "',"
                 + "'" + review.getRating()+"');";
         logger.log(Level.INFO, "SQL STATMENT= " + sqlInsert);
@@ -149,7 +149,7 @@ public class Model {
                 + "'" + coffeeShop.getPhone() + "',"
                 + "'" + coffeeShop.getDescription() + "',"
                 + "'" + coffeeShop.getOpentime() + "',"
-                + "'" + coffeeShop.getClosetime() + "')";
+                + "'" + coffeeShop.getClosetime() + "');";
         logger.log(Level.INFO, "SQL STATMENT= " + sqlInsert);
         Statement s = createStatement();
         logger.log(Level.INFO, "attempting statement execute");
@@ -167,7 +167,6 @@ public class Model {
         }
         logger.log(Level.INFO, "The new shop id=" + shopid);
         return shopid;
-
     }
 
     public void deleteCoffeeShop(int id) throws SQLException {
@@ -206,6 +205,7 @@ public class Model {
         String sqlQuery = "select * from coffeeshop;";
         Statement st = createStatement();
         ResultSet rows = st.executeQuery(sqlQuery);
+
         while (rows.next()) {
             logger.log(Level.INFO, "Reading row...");
             CoffeeShop shop = new CoffeeShop();
@@ -218,10 +218,33 @@ public class Model {
             shop.setOpentime(rows.getInt("opentime"));
             shop.setClosetime(rows.getInt("closetime"));
             shop.setDescription(rows.getString("description"));
+            shop.setReviews(this.getReviewsByShopId(shop.getShopid()));
             logger.log(Level.INFO, "Adding coffeeShop to list with id=" + shop.getShopid());
             ll.add(shop);
+            
         }
         return ll.toArray(new CoffeeShop[ll.size()]);
+    }
+    
+    private List<Review> getReviewsByShopId(int shopId) throws SQLException {
+        
+         //To change body of generated methods, choose Tools | Templates.
+        List<Review> ll = new ArrayList<Review>();
+        //CoffeeShop shop = new CoffeeShop();
+        String sqlQuery = "select * from review where shopid = " + shopId + ";";
+        Statement st = createStatement();
+        ResultSet rows = st.executeQuery(sqlQuery);
+           while (rows.next()) {
+            logger.log(Level.INFO, "Reading row...");
+            Review review = new Review();
+            review.setReview(rows.getString("reviews"));
+            review.setRating(rows.getInt("rating"));
+            review.setShopid(rows.getInt("shopid"));
+            logger.log(Level.INFO, "Adding coffeeShop to list with id=" + review.getShopid());
+            ll.add(review);
+        }
+           return ll;
+        
     }
 
     public boolean updateCoffeeShop(CoffeeShop coffeeShop) throws SQLException {

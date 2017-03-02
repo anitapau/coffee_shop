@@ -55,11 +55,10 @@ public class ReviewService {
         }
         sb.append("</table></body></html>");
        return sb.toString();
-
     }
     
     
-       @GET
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getReview() throws IOException {
        StringBuilder sb = new StringBuilder();
@@ -129,7 +128,6 @@ public class ReviewService {
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error connecting to db.");
         }
-
         return text.toString();
     }
 

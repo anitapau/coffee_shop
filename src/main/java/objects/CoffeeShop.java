@@ -60,6 +60,10 @@ public class CoffeeShop {
     public List<Review> getReviews() {
         return reviews;
     }
+    
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public long getPhone() {
         return phone;
