@@ -45,6 +45,21 @@ public class CoffeeShop {
      * Opening time of the coffee shop
      */
     private int opentime;
+    
+    /**
+     * List of reviews
+     */
+    
+    private List<Review> reviews;
+    
+    /**
+     * Getter for reviews
+     * @return reviews
+     */
+    
+    public List<Review> getReviews() {
+        return reviews;
+    }
 
     public long getPhone() {
         return phone;

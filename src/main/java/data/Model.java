@@ -161,6 +161,10 @@ public class Model {
         while (rs.next()) {
             shopid = rs.getInt("shop_id");   // assuming 2nd column is shopid
         }
+        for(Review review: coffeeShop.getReviews()) {
+            review.setShopid(shopid);
+            this.createReview(review);
+        }
         logger.log(Level.INFO, "The new shop id=" + shopid);
         return shopid;
 
