@@ -161,10 +161,6 @@ public class Model {
         while (rs.next()) {
             shopid = rs.getInt("shop_id");   // assuming 2nd column is shopid
         }
-        for(Review review: coffeeShop.getReviews()) {
-            review.setShopid(shopid);
-            this.createReview(review);
-        }
         logger.log(Level.INFO, "The new shop id=" + shopid);
         return shopid;
     }
@@ -218,7 +214,7 @@ public class Model {
             shop.setOpentime(rows.getInt("opentime"));
             shop.setClosetime(rows.getInt("closetime"));
             shop.setDescription(rows.getString("description"));
-            shop.setReviews(this.getReviewsByShopId(shop.getShopid()));
+          // shop.setReviews(this.getReviewsByShopId(shop.getShopid()));
             logger.log(Level.INFO, "Adding coffeeShop to list with id=" + shop.getShopid());
             ll.add(shop);
             
