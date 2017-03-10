@@ -72,7 +72,8 @@ public class CoffeeShopService {
         } catch (Exception e) {
             response = "{ErroMessage: Error geting coffeeshop}";
         }
-        return response;    }
+        return response;   
+    }
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
