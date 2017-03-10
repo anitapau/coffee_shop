@@ -14,7 +14,7 @@ create table coffeeshop (
     city varchar(40),
     state varchar(40),
     zip integer,
-    phone bigint,
+    phone varchar(50),
     opentime integer,
     closetime integer,
     description varchar(100)

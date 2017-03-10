@@ -40,17 +40,17 @@ public class CoffeeShop {
     /**
      * Phone number of the coffee shop.
      */
-    private long phone;
+    private String phone;
     /**
      * Opening time of the coffee shop
      */
     private int opentime;
 
-    public long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(long phonenumber) {
+    public void setPhone(String phonenumber) {
         this.phone = phonenumber;
     }
 

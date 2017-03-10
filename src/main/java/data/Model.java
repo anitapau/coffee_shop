@@ -185,7 +185,7 @@ public class Model {
             shop.setCity(rows.getString("city"));
             shop.setState(rows.getString("state"));
             shop.setZip(rows.getInt("zip"));
-            shop.setPhone(rows.getLong("phone"));
+            shop.setPhone(rows.getString("phone"));
             shop.setOpentime(rows.getInt("opentime"));
             shop.setClosetime(rows.getInt("closetime"));
             shop.setDescription(rows.getString("description"));
@@ -210,7 +210,7 @@ public class Model {
             shop.setCity(rows.getString("city"));
             shop.setState(rows.getString("state"));
             shop.setZip(rows.getInt("zip"));
-            shop.setPhone(rows.getLong("phone"));
+            shop.setPhone(rows.getString("phone"));
             shop.setOpentime(rows.getInt("opentime"));
             shop.setClosetime(rows.getInt("closetime"));
             shop.setDescription(rows.getString("description"));
