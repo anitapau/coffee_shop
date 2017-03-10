@@ -25,6 +25,8 @@ import javax.ws.rs.core.UriInfo;
 import objects.CoffeeShop;
 import objects.Review;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 /**
  *
@@ -40,135 +42,108 @@ public class CoffeeShopService {
 
     @GET
     @Path("/api/shops")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public String getCoffeeShop() throws IOException {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>MESSAGE LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>id</td><td>city</td><td>state</td><td>zip</td><td>phone</td><td>opentime</td><td>closetime</td><td>description</td><td>reviews</td></tr>");
+        ObjectMapper mapper = new ObjectMapper();
+        String response = null;
+        CoffeeShop [] shop =null;
         try {
             Model db = Model.singleton();
-            CoffeeShop[] shop = db.getCoffeeShop();
-            for (int i = 0; i < shop.length; i++) {
-                StringBuilder reviews = new StringBuilder();
-                reviews.append("[");
-                boolean isFirst = true;
-                for(Review review: shop[i].getReviews()){
-                    if (isFirst){
-                        isFirst = false;
-                    }else{
-                        reviews.append(", ");
-                    }
-                    reviews.append("review:"+review.getReview());
-                }
-                reviews.append("]");
-                sb.append("<tr><td>" + shop[i].getName() + "</td><td>" + shop[i].getShopid() + "</td><td>" + shop[i].getCity() + "</td><td>" + shop[i].getState() + "</td><td>" + shop[i].getZip() + "</td><td>" + shop[i].getPhone() + "</td><td>" + shop[i].getOpentime() + "</td><td>" + shop[i].getClosetime() + "</td><td>" + shop[i].getDescription()+ "</td><td>" + reviews.toString()+ "</td></tr>");
-            }
+            shop = db.getCoffeeShop();
+            response = mapper.writeValueAsString(shop);
         } catch (Exception e) {
-            sb.append("</table><br>Error getting coffeeShop: " + e.toString() + "<br>");
+            response = "{ErroMessage: Error geting coffeeshop}";
         }
-        sb.append("</table></body></html>");
-        return sb.toString();
+        return response;
 
     }
 
     @GET
     @Path("/{shopId}")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public String getCoffeeShop(@PathParam("shopId") int shopId) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<html><body><style>table, th, td {font-family:Arial,Verdana,sans-serif;font-size:16px;padding: 0px;border-spacing: 0px;}</style><b>CoffeeShop LIST:</b><br><br><table cellpadding=10 border=1><tr><td>`name`</td><td>id</td><td>city</td><td>state</td><td>zip</td><td>phone</td><td>opentime</td><td>closetime</td><td>description</td></tr>");
+        ObjectMapper mapper = new ObjectMapper();
+        String response = null;
+        CoffeeShop [] shop =null;
         try {
             Model db = Model.singleton();
-            CoffeeShop[] shop = db.getCoffeeShop(shopId);
-            for (int i = 0; i < shop.length; i++) {
-                sb.append("<tr><td>" + shop[i].getName() + "</td><td>" + shop[i].getShopid() + "</td><td>" + shop[i].getCity() + "</td><td>" + shop[i].getState() + "</td><td>" + shop[i].getZip() + "</td><td>" + shop[i].getPhone() + "</td><td>" + shop[i].getOpentime() + "</td><td>" + shop[i].getClosetime() + "</td><td>" + shop[i].getDescription()+ "</td></tr>");
-            }
+            shop = db.getCoffeeShop(shopId);
+            response = mapper.writeValueAsString(shop);
         } catch (Exception e) {
-            sb.append("</table><br>Error getting coffeeShop: " + e.toString() + "<br>");
+            response = "{ErroMessage: Error geting coffeeshop}";
         }
-        sb.append("</table></body></html>");
-        return sb.toString();
-    }
+        return response;    }
 
     @PUT
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String updateCoffeeShop(String jobj) throws IOException {
+    public String updateCoffeeShop(String jobj) throws IOException, JSONException {
         ObjectMapper mapper = new ObjectMapper();
         CoffeeShop shop = mapper.readValue(jobj.toString(), CoffeeShop.class);
-        StringBuilder text = new StringBuilder();
+        
+        JSONObject response = new JSONObject();
         try {
             Model db = Model.singleton();
             int shopId = shop.getShopid();
             db.updateCoffeeShop(shop);
+            response.put("shopId", shopId);
             logger.log(Level.INFO, "update contents with shop id=" + shopId);
-            text.append("shop contents updated with shop id=" + shopId + "\n");
         } catch (SQLException sqle) {
-            String errText = "Error updating shop after db connection made:\n" + sqle.getMessage() + " --- " + sqle.getSQLState() + "\n";
-            logger.log(Level.SEVERE, errText);
-            text.append(errText);
+           response.put("Error", sqle.getMessage());
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error connecting to db.");
-            text.append("Error connecting to db.");
+            response.put("Error", e.getMessage());
         }
-        return text.toString();
+        return response.toString();
 
     }
 
     @POST
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String createCoffeeShop(String jobj) throws IOException {
+    public String createCoffeeShop(String jobj) throws IOException, JSONException {
         ObjectMapper mapper = new ObjectMapper();
         CoffeeShop shop = mapper.readValue(jobj.toString(), CoffeeShop.class);
-
-        StringBuilder text = new StringBuilder();
-        text.append("The JSON obj:" + jobj.toString() + "\n");
-        text.append("CoffeeShop name is  " + shop.getName()+ "\n");
-        text.append("CoffeeShop city is " + shop.getCity()+ "\n");
-        text.append("CoffeeShop state is " + shop.getState()+ "\n");
-        text.append("CoffeeShop zip is " + shop.getZip()+ "\n");
-        text.append("CoffeeShop phone is " + shop.getPhone()+ "\n");
-        text.append("CoffeeShop opentime is " + shop.getOpentime()+ "\n");
-        text.append("CoffeeShop closetime is " + shop.getClosetime()+ "\n");
-        text.append("CoffeeShop description is " + shop.getDescription()+ "\n");
+        
+        JSONObject response = new JSONObject();
         try {
             Model db = Model.singleton();
             int shopid = db.createCoffeeShop(shop);
             logger.log(Level.INFO, "Coffeeshop persisted to db as id=" + shopid);
-            text.append("CoffeeShop id persisted with id=" + shopid);
+            response.put("shopId", shopid);
         } catch (SQLException sqle) {
             String errText = "Error persisting shop after db connection made:\n" + sqle.getMessage() + " --- " + sqle.getSQLState() + "\n";
             logger.log(Level.SEVERE, errText);
-            text.append(errText);
+            response.put("Error", errText);
         } catch (Exception e) {
+            response.put("Error", "Error connecting to db.");
             logger.log(Level.SEVERE, "Error connecting to db.");
         }
 
-        return text.toString();
+        return response.toString();
 
     }
 
     @DELETE
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/{id}")
-    public String deleteCoffeeShop(@PathParam("id") int id, String jobj) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-       // CoffeeShop shop = mapper.readValue(jobj.toString(), CoffeeShop.class);
-        StringBuilder text = new StringBuilder();
+    public String deleteCoffeeShop(@PathParam("id") int id, String jobj) throws IOException, JSONException {
+        
+        JSONObject response = new JSONObject();
         try {
             Model db = Model.singleton();
             db.deleteCoffeeShop(id);
             logger.log(Level.INFO, "Shop deleted from db=" + id);
-            text.append("coffeeShop id deleted with id=" + id);
+            response.put("shopId", id);
         } catch (SQLException sqle) {
             String errText = "Error deleteing shop after db connection made:\n" + sqle.getMessage() + " --- " + sqle.getSQLState() + "\n";
             logger.log(Level.SEVERE, errText);
-            text.append(errText);
+            response.put("Error", errText);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error connecting to db.");
-            text.append("Error connecting to db.");
+            response.put("Error", "Error connecting to db");
         }
-        return text.toString();
+        return response.toString();
     }
 
 }
