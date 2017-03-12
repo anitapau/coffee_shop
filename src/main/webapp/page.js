@@ -2,6 +2,7 @@
 	// this keeps track of all the JSON objects that we currently have
 	var JSON_OBJECTS_USERS = [];
 	var JSON_OBJECTS_SHOPS = [];
+        var host = 'https://gentle-coast-59786.herokuapp.com/tcss360';
 
 	// keeps track of the shop ids
 	var shop_ids = [];
@@ -34,7 +35,7 @@
 	function shopInformation() {
 		$("#shop-submission").click(function(){			
 			// generic URL
-			var url = "/";
+			var url = host+ "/coffeeShop";
 			var shop = makeShopObject();
 
 			if(confirm("Are you sure you want to make this shop?")){
@@ -48,13 +49,21 @@
 				});
 			} 	
 		});
+                
+                //render_newShop.display the new shopid created as supplied from service
+                
+                     
+                    
+          
+                
+                
 
 		// deals with updating the shop
 		$("#update-shop").click(function(){
 			var shop = makeShopObject();
 
 			// generic URL
-			var url = "/";					
+			var url = host+ "/coffeeShop";					
 
 			if(confirm("Are you sure you want to update this shop?")){
 				$.ajax({
@@ -71,7 +80,7 @@
 		$("#delete-shop").click(function(){
 			var title = document.getElementById("shop-id");
 			var shop = {'shopid': parseInt(title.value)};
-			var url = '/' + title.value;
+			var url = host+'/coffeeShop/' + title.value;
 
 			if(confirm("Are you sure you want to delete this shop?")) {
 				$.ajax({
@@ -88,7 +97,7 @@
 			var shop_name = document.getElementById("shop-id");
 			
 			// relative URL to use
-			var url = '/' + shop_name.value;
+			var url = host+'/coffeeShop/' + shop_name.value;
 
 			// make the request to get the data
 			$.ajax({
@@ -135,7 +144,7 @@
 	function reviewInformation() {
 		$("#review-submission").click(function(){
 			// generic URL
-			var url = "/";
+			var url = host+ "/review";
 			var review = makeReviewObject();
 
 			if(confirm("Are you sure you want to make this review?")){
@@ -154,7 +163,7 @@
 			var review = makeReviewObject();
 
 			// generic URL
-			var url = "/";					
+			var url = host+ "/review";					
 
 			if(confirm("Are you sure you want to update this review?")){
 				$.ajax({
@@ -171,7 +180,7 @@
 		$("#delete-review").click(function(){
 			var title = document.getElementById("review-id");
 			var review = {'reviewid': parseInt(title.value)};
-			var url = '/' + title.value;
+			var url = host+ '/review/' + title.value;
 
 			if(confirm("Are you sure you want to delete this review?")) {
 				$.ajax({
@@ -188,7 +197,7 @@
 			var review_id = document.getElementById("review-id");
 			
 			// relative URL to use
-			var url = 'tcss360/reviews/' + review_id;
+			var url = host + '/reviews/' + review_id;
 
 			// make the request to get the data
 			$.ajax({
