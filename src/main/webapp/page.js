@@ -39,7 +39,7 @@
 	// it links up all of the buttons under the shop html to the appropriate requests
 	function shopInformation() {
 		$("#shop-submission").click(function(e){
-                    alert("message if entered");
+                    
 			e.stopImmediatePropogation();
                            // generic URL
 			var url = host+ "/coffeeShop";
@@ -54,7 +54,8 @@
 					contentType: 'application/json',
 					success: render_newshop
 				});
-			} 	
+			} 
+                        alert("message if entered");
 		});
                 
                 //render_newShop.display the new shopid created as supplied from service
@@ -129,11 +130,11 @@
 
 		// INTEGERS		
 		var zip = document.getElementById("shop-zip");		
-		var id = document.getElementById("shop-id");
+		//var id = document.getElementById("shop-id");
 
 		// create the object, JSON objects are nothing more than strings
 		var shop = {
-			"shopid" : id.value,
+			//"shopid" : id.value,
 			"name" : name.value,
 			"city" : city.value,
 			"state" : state.value,
@@ -352,13 +353,14 @@
 		// check for review
 		if($(this).attr("title") == "review") {
                    
-                    reviewInformation();
+                    //reviewInformation();
 			$("#review-id").val(createId($(this).attr("title")));
 			//alert($("#review-id").val());
 		}
 
 		// check for shop
 		if($(this).attr("title") == "shop") {
+                   
                      shopInformation();
 			var id = createId($(this).attr("title"));
 			// console.log("actual id returned: " + id);
@@ -369,9 +371,11 @@
 			//console.log("shop-id value after: " + $("#shop-id").val());
 			//alert($("#shop-id").val());
 		}
-
 		$("form").submit(function(e) {
+               
 			e.preventDefault();
+                         alert("here");
+                        console.log("here");
 			//getInformation(this.id);
 			//console.log("form submitted");	
 		});
