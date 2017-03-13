@@ -51,7 +51,7 @@
 					datatype: 'json',
 					data: JSON.stringify(shop),
 					contentType: 'application/json',
-					success: render_newshop
+					success: function() {alert("made object in db");}
 				});
 			} 
                         alert("message if entered");
