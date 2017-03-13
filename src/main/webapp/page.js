@@ -133,7 +133,7 @@
 
 		// create the object, JSON objects are nothing more than strings
 		var shop = {
-			"id" : id.value,
+			"shopid" : id.value,
 			"name" : name.value,
 			"city" : city.value,
 			"state" : state.value,
@@ -231,7 +231,7 @@
 
 		// generate the review object
 		var review = {
-			"id": id.value,
+			"reviewid": id.value,
 			"shopid": shop_id.value,
 			"message": message.value,
 			"rating": rating.value
