@@ -2,8 +2,8 @@
 	// this keeps track of all the JSON objects that we currently have
 	var JSON_OBJECTS_USERS = [];
 	var JSON_OBJECTS_SHOPS = [];
-        //var host = 'https://gentle-coast-59786.herokuapp.com/tcss360';
-        var host = 'http://localhost/tcss360';
+        var host = 'https://gentle-coast-59786.herokuapp.com/tcss360';
+        //var host = 'http://localhost/tcss360';
 
 	// keeps track of the shop ids
 	var shop_ids = [];
