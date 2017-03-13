@@ -101,6 +101,7 @@
 
 		$("#get-shop-data").click(function(e){
                       e.preventDefault();
+                      alert("Get is working: ");
 			var shop_name = document.getElementById("shop-id");
 			
 			// relative URL to use
