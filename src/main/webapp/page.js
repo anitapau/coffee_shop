@@ -30,8 +30,7 @@
 			getMessages();
 		});	
 
-		shopInformation();
-		reviewInformation();
+		
 	}
         
       
@@ -352,12 +351,15 @@
 		// alert($(this).attr("title") == "review");
 		// check for review
 		if($(this).attr("title") == "review") {
+                   
+                    reviewInformation();
 			$("#review-id").val(createId($(this).attr("title")));
 			//alert($("#review-id").val());
 		}
 
 		// check for shop
 		if($(this).attr("title") == "shop") {
+                     shopInformation();
 			var id = createId($(this).attr("title"));
 			// console.log("actual id returned: " + id);
 			// console.log("shop-id value before: " + $("#shop-id").val());
