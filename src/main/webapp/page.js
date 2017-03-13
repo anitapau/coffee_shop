@@ -15,9 +15,7 @@
 	var map_okay = true;
 	var container_made = false;
         
-        $("form").on("submit", function(e){
-            e.preventDefault()
-        });
+     
 
 	window.onload = function() {
 		var list = document.getElementsByClassName("change-page");
@@ -27,7 +25,8 @@
 		//$("#view-port").load("home.html");		
 		$("#fade-in").hide().fadeIn(2500);		
 		
-		$("#get-user-message-data").click(function() {			
+		$("#get-user-message-data").click(function() {
+                    
 			getMessages();
 		});	
 
@@ -40,8 +39,9 @@
 	// this segment of code deals with all of the button clicks to the shops page
 	// it links up all of the buttons under the shop html to the appropriate requests
 	function shopInformation() {
-		$("#shop-submission").click(function(){			
-			// generic URL
+		$("#shop-submission").click(function(e){			
+			e.stopImmediatePropogation();
+                           // generic URL
 			var url = host+ "/coffeeShop";
 			var shop = makeShopObject();
 
@@ -63,7 +63,8 @@
                 
 
 		// deals with updating the shop
-		$("#update-shop").click(function(){
+		$("#update-shop").click(function(e){
+                    e.preventDefault();
 			var shop = makeShopObject();
 
 			// generic URL
@@ -81,7 +82,8 @@
 			}
 		});
 
-		$("#delete-shop").click(function(){
+		$("#delete-shop").click(function(e){
+                      e.preventDefault();
 			var title = document.getElementById("shop-id");
 			var shop = {'shopid': parseInt(title.value)};
 			var url = host+'/coffeeShop/' + title.value;
@@ -97,7 +99,8 @@
 			}
 		});
 
-		$("#get-shop-data").click(function(){
+		$("#get-shop-data").click(function(e){
+                      e.preventDefault();
 			var shop_name = document.getElementById("shop-id");
 			
 			// relative URL to use
@@ -146,7 +149,8 @@
 	// this segment of code deals with all of the button clicks to the reviews page
 	// it links up all of the buttons under the review html to the appropriate requests
 	function reviewInformation() {
-		$("#review-submission").click(function(){
+		$("#review-submission").click(function(e){
+                      e.preventDefault();
 			// generic URL
 			var url = host+ "/review";
 			var review = makeReviewObject();
@@ -164,6 +168,7 @@
 		});
 		
 		$("#update-review").click(function(){
+                     
 			var review = makeReviewObject();
 
 			// generic URL
@@ -198,6 +203,7 @@
 		});
 
 		$("#get-review-data").click(function(){
+                     
 			var review_id = document.getElementById("review-id");
 			
 			// relative URL to use
