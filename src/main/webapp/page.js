@@ -113,8 +113,17 @@
 				datatype: 'json',
 				success: makeTable_shop
 			});
+                        alert("made a request to get the information");
 		});
 	}
+        
+        function makeTable_shop(data) {
+            alert("we have made it here");
+            $.each(data, function(){
+                alert("got a coffee shop to make");
+            });
+            
+        }
 
 	// function that creates a shop object and returns it
 	function makeShopObject() {
