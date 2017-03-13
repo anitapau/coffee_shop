@@ -2,7 +2,8 @@
 	// this keeps track of all the JSON objects that we currently have
 	var JSON_OBJECTS_USERS = [];
 	var JSON_OBJECTS_SHOPS = [];
-        var host = 'https://gentle-coast-59786.herokuapp.com/tcss360';
+        //var host = 'https://gentle-coast-59786.herokuapp.com/tcss360';
+        var host = 'http://localhost/tcss360';
 
 	// keeps track of the shop ids
 	var shop_ids = [];
@@ -13,13 +14,17 @@
 	// checks to see if we can generate a map
 	var map_okay = true;
 	var container_made = false;
+        
+        $("form").on("submit", function(e){
+            e.preventDefault()
+        });
 
 	window.onload = function() {
 		var list = document.getElementsByClassName("change-page");
 		for(var i = 0; i < list.length; i++) {
 			list[i].onclick = linkPage;		
 		}
-		$("#view-port").load("home.html");		
+		//$("#view-port").load("home.html");		
 		$("#fade-in").hide().fadeIn(2500);		
 		
 		$("#get-user-message-data").click(function() {			
@@ -29,6 +34,8 @@
 		shopInformation();
 		reviewInformation();
 	}
+        
+      
 
 	// this segment of code deals with all of the button clicks to the shops page
 	// it links up all of the buttons under the shop html to the appropriate requests
@@ -53,9 +60,6 @@
                 //render_newShop.display the new shopid created as supplied from service
                 
                      
-                    
-          
-                
                 
 
 		// deals with updating the shop
