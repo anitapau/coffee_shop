@@ -102,7 +102,7 @@
 		$("#get-shop-data").click(function(e){
                       e.preventDefault();
                       alert("Get is working: ");
-			var shop_name = document.getElementById("shop-id");
+			var shop_name = document.getElementById("shop-identification");
 			
 			// relative URL to use
 			var url = host+'/coffeeShop/' + shop_name.value;
