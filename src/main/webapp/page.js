@@ -39,7 +39,8 @@
 	// this segment of code deals with all of the button clicks to the shops page
 	// it links up all of the buttons under the shop html to the appropriate requests
 	function shopInformation() {
-		$("#shop-submission").click(function(e){			
+		$("#shop-submission").click(function(e){
+                    alert("message if entered");
 			e.stopImmediatePropogation();
                            // generic URL
 			var url = host+ "/coffeeShop";
