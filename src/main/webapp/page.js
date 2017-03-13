@@ -39,9 +39,8 @@
 	// it links up all of the buttons under the shop html to the appropriate requests
 	function shopInformation() {
 		$("#shop-submission").click(function(e){
-                    
-			e.stopImmediatePropogation();
-                           // generic URL
+                    e.preventDefault();
+                                               // generic URL
 			var url = host+ "/coffeeShop";
 			var shop = makeShopObject();
 
@@ -131,7 +130,7 @@
 		// INTEGERS		
 		var zip = document.getElementById("shop-zip");		
 		//var id = document.getElementById("shop-id");
-
+                alert("making the shop");
 		// create the object, JSON objects are nothing more than strings
 		var shop = {
 			//"shopid" : id.value,
@@ -141,8 +140,8 @@
 			"zip" : zip.value,
 			"number" : number.value,
 			"description" : description.value,
-			"open" : open.value,
-			"close" : close.value
+			"opentime" : open.value,
+			"closetime" : close.value
 		};
 		return shop;
 	}
