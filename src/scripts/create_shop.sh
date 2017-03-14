@@ -10,13 +10,14 @@ ENDPOINT=https://gentle-coast-59786.herokuapp.com/tcss360/coffeeShop
 
 curl -X POST -H "Content-Type: application/json" -d '{
 	"name": "coffee Brew",
+	"street":"145th main",
 	"city": "Chicago",
 	"state":"WA",
 	"zip":"98009",
 	"opentime":9,
 	"closetime":15,
 	"phone":"3107793311",
-	"description":"shop having spa outside."
+	"description":"shop having sitting tables outside."
 }' $ENDPOINT
 
 echo

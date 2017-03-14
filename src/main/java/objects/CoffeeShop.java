@@ -16,15 +16,15 @@ public class CoffeeShop {
     /**
      * The id of the coffee shop.
      */
-    private int shopid;
+    public int shopid;
     /**
      * Name of the coffee shop.
      */
-    private String name;
+    public String name;
     /**
      * Street address
      */
-    private String street;
+    public String street;
 
     public String getStreet() {
         return street;
@@ -37,27 +37,27 @@ public class CoffeeShop {
     /**
      * City of the coffee shop.
      */
-    private String city;
+    public String city;
     /**
      * State of the coffee shop.
      */
-    private String state;
+    public String state;
     /**
      * Zip of the coffee shop.
      */
-    private long zip;
+    public long zip;
     /**
      * Phone number of the coffee shop.
      */
-    private String description;
+    public String description;
     /**
      * Phone number of the coffee shop.
      */
-    private String phone;
+    public String phone;
     /**
      * Opening time of the coffee shop
      */
-    private int opentime;
+    public int opentime;
 
     public String getPhone() {
         return phone;
@@ -85,7 +85,7 @@ public class CoffeeShop {
     /**
      * Close time of the coffee shop..../api/shops
      */
-    private int closetime;
+    public int closetime;
 
     public String getCity() {
         return city;

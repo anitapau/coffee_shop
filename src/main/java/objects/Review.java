@@ -16,20 +16,20 @@ public class Review {
     /**
      * The id associated with this review.
      */
-    private int reviewid;
+  public int reviewid;
     /**
      * A reviews string representation of the review.
      */
-    private String review;
+    public String review;
 
     /**
      * Shop id associated with this review.
      */
-    private Integer shopid;
+    public Integer shopid;
     /**
      * rating associated with this review.
      */
-    private Integer rating;
+    public Integer rating;
 
     public Review() {
     }
