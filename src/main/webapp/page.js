@@ -107,6 +107,7 @@
 			// relative URL to use
 			var url = host+'/coffeeShop/' + shop_name.value;
 
+alert(url);
 			// make the request to get the data
 			$.ajax({
 				type: 'GET',
