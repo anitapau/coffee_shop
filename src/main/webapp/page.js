@@ -120,10 +120,9 @@ alert(url);
 	}
         
         function makeTable_shop(data) {
-            alert("we have made it here");
-            $.each(data, function(){
-                alert("got a coffee shop to make");
-            });
+            var p = document.creatElement("p");
+            p.innerHTML = "testing";
+            $("#test").append(p);
             
         }
 
