@@ -119,12 +119,20 @@ alert(url);
 		});
 	}
         
-        function makeTable_shop(data) {
-            var p = document.creatElement("p");
-            p.innerHTML = "testing";
-            $("#test").append(p);
-            
-        }
+      function makeTable_shop(data) {
+$.each(data, function(index, shop) { 
+var newrow = "<tr><td id=\"shopid\"" + index + "\">"+ shop.shopid + "</td>";
+newrow += "<td id=\"name\">" + shop.name + "</td></tr>";
+newrow += "<td id=\"state\">" + shop.state + "</td>";
+newrow += "<td id=\"city\">" + shop.city + "</td></tr>";
+newrow += "<td id=\"zip\">" + shop.zip + "</td></tr>";
+newrow += "<td id=\"description\">" + shop.description + "</td></tr>";
+newrow += "<td id=\"phone\">" + shop.phone + "</td></tr>";
+newrow += "<td id=\"opentime\">" + shop.opentime + "</td></tr>";
+newrow += "<td id=\"closetime\">" + shop.closetime + "</td></tr>";
+$('#test').append(newrow);
+});
+}
 
 	// function that creates a shop object and returns it
 	function makeShopObject() {
