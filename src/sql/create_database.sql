@@ -11,6 +11,7 @@
 create table coffeeshop (
     shop_id SERIAL primary key,
     name varchar(40),
+    street varchar(50),
     city varchar(40),
     state varchar(40),
     zip integer,

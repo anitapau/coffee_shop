@@ -22,6 +22,19 @@ public class CoffeeShop {
      */
     private String name;
     /**
+     * Street address
+     */
+    private String street;
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+    
+    /**
      * City of the coffee shop.
      */
     private String city;

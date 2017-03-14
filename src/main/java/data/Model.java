@@ -141,8 +141,9 @@ public class Model {
     }
 
     public int createCoffeeShop(CoffeeShop coffeeShop) throws SQLException {
-        String sqlInsert = "insert into coffeeshop (name, city, state, zip, phone, description, opentime, closetime) values ("
+        String sqlInsert = "insert into coffeeshop (name, street, city, state, zip, phone, description, opentime, closetime) values ("
                 + "'" + coffeeShop.getName() + "',"
+                + "'" + coffeeShop.getStreet() + "',"
                 + "'" + coffeeShop.getCity() + "',"
                 + "'" + coffeeShop.getState() + "',"
                 + "'" + coffeeShop.getZip() + "',"
@@ -182,6 +183,7 @@ public class Model {
             CoffeeShop shop = new CoffeeShop();
             shop.setName(rows.getString("name"));
             shop.setShopid(rows.getInt("shop_id"));
+            shop.setStreet(rows.getString("street"));
             shop.setCity(rows.getString("city"));
             shop.setState(rows.getString("state"));
             shop.setZip(rows.getInt("zip"));
