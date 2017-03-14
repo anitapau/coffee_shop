@@ -209,6 +209,7 @@ public class Model {
             CoffeeShop shop = new CoffeeShop();
             shop.setName(rows.getString("name"));
             shop.setShopid(rows.getInt("shop_id"));
+             shop.setStreet(rows.getString("street"));
             shop.setCity(rows.getString("city"));
             shop.setState(rows.getString("state"));
             shop.setZip(rows.getInt("zip"));
