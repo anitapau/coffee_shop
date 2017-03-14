@@ -253,10 +253,10 @@
           newrow += "<td id=\"state\">" + shop.state + "</td>";
           newrow += "<td id=\"zip\">" + shop.zip + "</td>";
           newrow += "<td id=\"phone\">" + shop.phone + "</td>";
-          newrow += "<td id=\"open\">" + shop.opentime + "</td>";
-          newrow += "<td id=\"close\">" + shop.closetime + "</td>";
+          newrow += "<td id=\"opentime\">" + shop.opentime + "</td>";
+          newrow += "<td id=\"closetime\">" + shop.closetime + "</td>";
          // newrow += "<td id=\"maps\"><button class=\"btn btn-primary\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseExample"+ shop.myshopId + "\" aria-expanded=\"false\" aria-controls=\"collapseExample\">Directions</button>";
-          newrow += "<div class=\"collapse\" id=\"collapseExample"+ shop.myshopId + "\">";
+          newrow += "<div class=\"collapse\" id=\"collapseExample"+ shop.shopid + "\">";
           //newrow += "<iframe width=\"500\" height=\"450\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyC7yDiukFj6gYsFTxp0mt9XNJlly3hZtpk&q="+ shop.mylatitude + ","+ shop.mylongitude + "\" allowfullscreen></iframe></div></td></tr>";
         
         
@@ -303,8 +303,8 @@
             $('#state').val(shop.state);
             $('#zip').val(shop.zip);
             $('#phone').val(shop.phone);
-            $('#open').val(shop.opentime);
-            $('#close').val(shop.closetime);
+            $('#opentime').val(shop.opentime);
+            $('#closetime').val(shop.closetime);
         });
       else
       {
@@ -393,11 +393,11 @@
                 <div class="col-md-9"><input class="form-control" type="text" id="phone" size="10"/></div>
             </div>
               <div class="form-group">
-                <label class="control-label col-md-3" for="opentime">Opens at : </label>
+                <label class="control-label col-md-3" for="opentime">Open Time : </label>
                 <div class="col-md-9"><input class="form-control" type="text" id="openhours" size="10"/></div>
             </div>
               <div class="form-group">
-                <label class="control-label col-md-3" for="closetime">closes at : </label>
+                <label class="control-label col-md-3" for="closetime">close Time : </label>
                 <div class="col-md-9"><input class="form-control" type="text" id="closehours" size="10"/></div>
             </div>
 
