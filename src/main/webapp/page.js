@@ -375,7 +375,7 @@ alert(url);
 			// console.log("actual id returned: " + id);
 			// console.log("shop-id value before: " + $("#shop-id").val());
 			// console.log("shop input object: " + $("#shop-id"));
-			document.getElementById("shop-id").value = id;
+			//document.getElementById("shop-id").value = id;
 			//$("#shop-id").val(id);			
 			//console.log("shop-id value after: " + $("#shop-id").val());
 			//alert($("#shop-id").val());
