@@ -24,14 +24,14 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script language="javascript">
     $(document).ready(function () { 
-        var old_shopid = document.getElementById("shopid").value;
+        var old_shopid = document.getElementById("shop_id").value;
         
         // Get-Data Click function
         //
         // Calls the GET service to lookup a currently entered shopid
         $('#get-data').click(function () 
         {
-          var shopid = document.getElementById("shopid");
+          var shopid = document.getElementById("shop_id");
           var url='tcss360/coffeeShop/'+shopid.value;
 
           $.ajax({
@@ -42,15 +42,15 @@
           });        
         });
 
-        $('#shopid').focusin(function () {
-            old_shopid = document.getElementById("shopid").value;    
+        $('#shop_id').focusin(function () {
+            old_shopid = document.getElementById("shop_id").value;    
         });
 
         // If the shop exits the shopid textbox and places focus on another
         // GUI control on the screen, and if the shop id had changed since
         // the shop entered the box, then reload the shop form
         $('#shopid').focusout(function () {
-            var curr_shopid = document.getElementById("shopid").value;    
+            var curr_shopid = document.getElementById("shop_id").value;    
             //alert(curr_shopid + '---' + old_shopid)
             if (curr_shopid != old_shopid)
                 getshop();
@@ -61,7 +61,7 @@
         // Calls the DELETE service to delete the selected shop
         $('#delete-shop').click(function ()
         {
-           var shopid = document.getElementById("shopid");
+           var shopid = document.getElementById("shop_id");
            var shopname = document.getElementById("name");
            var shop = { 'shop_id': shopid.value };           
            var url='tcss360/coffeeShop/';
@@ -82,7 +82,7 @@
         // Clears the form to allow entry of a new shop record
         $('#new-shop').click(function ()
         {
-           document.getElementById("shopid").disabled = true;
+           document.getElementById("shop_id").disabled = true;
            document.getElementById("name").value = "";
            document.getElementById("street").value = "";
            document.getElementById("city").value="";
@@ -99,7 +99,7 @@
         // If an existing shop, call the PUT to update the shop
         $('#save-shop').click(function ()
         {
-            if (document.getElementById("shopid").disabled)
+            if (document.getElementById("shop_id").disabled)
             {
                 // Create a new record
                 var shopname = document.getElementById("name");
@@ -136,7 +136,7 @@
             else
             {
                 // Update an existing record
-                var shopid = document.getElementById("shopid");
+                var shopid = document.getElementById("shop_id");
                 var shopname = document.getElementById("name");
                 var street = document.getElementById("street");
                 var city = document.getElementById("city");
@@ -202,7 +202,7 @@
         // Clears the form to allow entry of a new review record
         $('#clear-form').click(function ()
         {
-           document.getElementById("shopid").value = "";
+           document.getElementById("shop_id").value = "";
            document.getElementById("name").value = "";
            document.getElementById("street").value = "";
            document.getElementById("city").value="";
@@ -219,7 +219,7 @@
     // gets and displays shops by calling render
     function getshops() {
         // Form load
-        var url='tcss360/shops/0';
+        var url='tcss360/coffeeShops/0';
 
         $.ajax({
           type: 'GET',
@@ -232,7 +232,7 @@
     // gets and displays shops by calling render
     function getshop() {
         // Form load
-        var shopid = document.getElementById("shopid"); 
+        var shopid = document.getElementById("shop_id"); 
         var url='tcss360/coffeeShop/' + shopid.value;
 
         $.ajax({
@@ -246,7 +246,7 @@
     // renders the shop table
     function render(data)  {
       $.each(data, function(index, shop) { 
-          var newrow = "<tr><td id=\"shopid\"" + index + "\">"+ shop.myshopId + "</td>";
+          var newrow = "<tr><td id=\"shop_id\"" + index + "\">"+ shop.myshopId + "</td>";
           newrow += "<td id=\"name\">" + shop.name + "</td>";
           newrow += "<td id=\"street\">" + shop.street + "</td>";
           newrow += "<td id=\"city\">" + shop.city + "</td>";
@@ -277,16 +277,16 @@
     {
         $('#mybody').empty();
         getshops();
-        document.getElementById("shopid").value = "";
+        document.getElementById("shop_id").value = "";
     }
     
     // display the shopid of a newly created shop as supplied from the service
     function render_newshop(data)
     {
         $.each(data, function(index, shop) { 
-          document.getElementById("shopid").value = shop.shopid;
+          document.getElementById("shop_id").value = shop.shopid;
         });
-        document.getElementById("shopid").disabled = false;
+        document.getElementById("shop_id").disabled = false;
         $('#mybody').empty();
         getshops();
     }
@@ -296,7 +296,7 @@
       var list = data;
       if (list)
         $.each(list, function(index, shop) { 
-            $('#shopid').val(shop.shopid);
+            $('#shop_id').val(shop.shopid);
             $('#name').val(shop.name);
             $('#street').val(shop.street);
             $('#city').val(shop.city);
@@ -360,8 +360,8 @@
               <br />
               <br />
             <div class="form-group">  
-             <label class="control-label col-md-3" for="shopid">Enter Shop ID:</label>
-             <div class="col-md-9"><input class="form-control" type="text" id="shopid" /></div>
+             <label class="control-label col-md-3" for="shop_id">Enter Shop ID:</label>
+             <div class="col-md-9"><input class="form-control" type="text" id="shop_id" /></div>
             </div>
               
             <div class="form-group"> 
@@ -394,11 +394,11 @@
             </div>
               <div class="form-group">
                 <label class="control-label col-md-3" for="opentime">Open Time : </label>
-                <div class="col-md-9"><input class="form-control" type="text" id="openhours" size="10"/></div>
+                <div class="col-md-9"><input class="form-control" type="text" id="opentime" size="10"/></div>
             </div>
               <div class="form-group">
                 <label class="control-label col-md-3" for="closetime">close Time : </label>
-                <div class="col-md-9"><input class="form-control" type="text" id="closehours" size="10"/></div>
+                <div class="col-md-9"><input class="form-control" type="text" id="closetime" size="10"/></div>
             </div>
 
           </div>
