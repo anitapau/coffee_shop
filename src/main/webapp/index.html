@@ -49,7 +49,7 @@
         // If the shop exits the shopid textbox and places focus on another
         // GUI control on the screen, and if the shop id had changed since
         // the shop entered the box, then reload the shop form
-        $('#shopid').focusout(function () {
+        $('#shop_id').focusout(function () {
             var curr_shopid = document.getElementById("shop_id").value;    
             //alert(curr_shopid + '---' + old_shopid)
             if (curr_shopid != old_shopid)
@@ -218,7 +218,7 @@
     // gets and displays shops by calling render
     function getshops() {
         // Form load
-        var url='tcss360/coffeeShops/0';
+        var url='tcss360/coffeeShops/api/shops';
 
         $.ajax({
           type: 'GET',
@@ -245,7 +245,7 @@
     // renders the shop table
     function render(data)  {
       $.each(data, function(index, shop) { 
-          var newrow = "<tr><td id=\"shop_id\"" + index + "\">"+ shop.shop_id + "</td>";
+          var newrow = "<tr><td id=\"shop_id\"" + index + "\">"+ shop.shopId + "</td>";
           newrow += "<td id=\"name\">" + shop.name + "</td>";
           newrow += "<td id=\"street\">" + shop.street + "</td>";
           newrow += "<td id=\"city\">" + shop.city + "</td>";
@@ -255,7 +255,7 @@
           newrow += "<td id=\"opentime\">" + shop.opentime + "</td>";
           newrow += "<td id=\"closetime\">" + shop.closetime + "</td>";
          // newrow += "<td id=\"maps\"><button class=\"btn btn-primary\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseExample"+ shop.myshopId + "\" aria-expanded=\"false\" aria-controls=\"collapseExample\">Directions</button>";
-          newrow += "<div class=\"collapse\" id=\"collapseExample"+ shop.shopid + "\">";
+          newrow += "<div class=\"collapse\" id=\"collapseExample"+ shop.shopId + "\">";
           //newrow += "<iframe width=\"500\" height=\"450\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyC7yDiukFj6gYsFTxp0mt9XNJlly3hZtpk&q="+ shop.mylatitude + ","+ shop.mylongitude + "\" allowfullscreen></iframe></div></td></tr>";
         
         
