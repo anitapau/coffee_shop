@@ -61,7 +61,7 @@
         // Calls the DELETE service to delete the selected shop
         $('#delete-shop').click(function ()
         {
-           var shopid = document.getElementById("shop_id");
+           var shopid = document.getElementById("shop_id").value;
            var shopname = document.getElementById("name");
            var shop = { 'shop_id': shopid.value };           
            var url='tcss360/coffeeShop/'+shopid;
