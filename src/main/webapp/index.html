@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Coffee Shops</title>
+  <title>Coffee Search</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -65,7 +65,7 @@
            var shopname = document.getElementById("name");
            var shop = { 'shop_id': shopid.value };           
            var url='tcss360/coffeeShop/'+shopid;
-           if (confirm('Are you sure - DELETE ' + shopname.value + '-(' + shopid.value + ') ?')) {
+           if (confirm('Are you sure - DELETE ' + shopname.value + '-(' + shopid + ') ?')) {
              $.ajax({
                type: 'DELETE',
                url: url,
@@ -425,7 +425,7 @@
     <h2>Shops</h2>
     <hr>
       <table class="table table-striped">
-          <thead><tr><th>Shop ID</th><th>Shop</th><th>Street</th><th>City</th><th>State</th><th>Zip</th><th>Phone</th><th>Opentime</th><th>Closetime</th></tr></thead>
+          <thead><tr><th>Shop ID</th><th>Shop</th><th>Street</th><th>City</th><th>State</th><th>Zip</th><th>Phone</th><th>Desription</th><th>OpenTime</th><th>CloseTime</th></tr></thead>
         <tbody id="mybody" class="table-body">
         </tbody>
       </table>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Coffee Shops</title>
+  <title>Coffee Search</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -56,10 +56,10 @@
         // Calls the DELETE service to delete the selected review
         $('#delete-review').click(function ()
         {
-           var reviewid = document.getElementById("reviewid");
-           var review = { 'reviewid': reviewid.value };           
+           var reviewid = document.getElementById("reviewid").value;
+           var review = { 'review': review.value };           
            var url='tcss360/review/'+reviewid.value;
-           if (confirm('Are you sure - DELETE ' + reviewid.value + '-(' + reviewid.value + ') ?')) {
+           if (confirm('Are you sure - DELETE ' + review.value + '-(' + reviewid.value + ') ?')) {
              $.ajax({
                type: 'DELETE',
                url: url,
@@ -102,7 +102,7 @@
                              'review' : reviewSingle.value
                          };           
                 var url='tcss360/review/';
-                if (confirm('Are you sure - CREATE ' + ' the reviewSingle?')) {
+                if (confirm('Are you sure - CREATE ' + ' the review ?')) {
                   $.ajax({
                     type: 'POST',
                     url: url,
