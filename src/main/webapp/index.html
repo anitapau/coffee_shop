@@ -89,6 +89,7 @@
            document.getElementById("state").value="";
            document.getElementById("zip").value="";
            document.getElementById("phone").value="";
+           document.getElementById("description").value="";
            document.getElementById("opentime").value="";
            document.getElementById("closetime").value="";
         });        
@@ -108,6 +109,7 @@
                 var state = document.getElementById("state");
                 var zip = document.getElementById("zip");
                 var phone = document.getElementById("phone");
+                var description = document.getElementById("description");
                 var openhours = document.getElementById("opentime");
                 var closehours = document.getElementById("closetime");
                 
@@ -117,6 +119,7 @@
                              'state' : state.value,
                              'zip' : zip.value,
                              'phone' : phone.value,
+                             'description': description.value,
                              'opentime' : openhours.value,
                              'closetime' : closehours.value 
                          };           
@@ -142,6 +145,7 @@
                 var state = document.getElementById("state");
                 var zip = document.getElementById("zip");
                 var phone = document.getElementById("phone");
+                var description = document.getElementById("description");
                 var opentime = document.getElementById("opentime");
                 var closetime = document.getElementById("closetime");
                 
@@ -153,6 +157,7 @@
                              'state' : state.value,
                              'zip' : zip.value,
                              'phone' : phone.value,
+                             'description': description.value,
                              'opentime' : opentime.value,
                              'closetime' : closetime.value
                          };          
@@ -208,6 +213,7 @@
            document.getElementById("state").value="";
            document.getElementById("zip").value="";
            document.getElementById("phone").value="";
+           document.getElementById("description").value="";
            document.getElementById("opentime").value="";
            document.getElementById("closetime").value="";
            return;
@@ -252,6 +258,8 @@
           newrow += "<td id=\"state\">" + shop.state + "</td>";
           newrow += "<td id=\"zip\">" + shop.zip + "</td>";
           newrow += "<td id=\"phone\">" + shop.phone + "</td>";
+          newrow += "<td id=\"description\">" + shop.description + "</td>";
+          
           newrow += "<td id=\"opentime\">" + shop.opentime + "</td>";
           newrow += "<td id=\"closetime\">" + shop.closetime + "</td>";
          // newrow += "<td id=\"maps\"><button class=\"btn btn-primary\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseExample"+ shop.myshopId + "\" aria-expanded=\"false\" aria-controls=\"collapseExample\">Directions</button>";
@@ -302,6 +310,8 @@
             $('#state').val(shop.state);
             $('#zip').val(shop.zip);
             $('#phone').val(shop.phone);
+            $('#description').val(shop.description);
+
             $('#opentime').val(shop.opentime);
             $('#closetime').val(shop.closetime);
         });
@@ -313,6 +323,7 @@
            document.getElementById("state").value="";
            document.getElementById("zip").value="";
            document.getElementById("phone").value="";
+           document.getElementById("description").value=""; 
            document.getElementById("opentime").value="";
            document.getElementById("closetime").value="";
       }
@@ -332,9 +343,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-         <li><a href="index.html">Shops</a></li>
+         <li><a href="index.html">Coffee Shops</a></li>
          <li><a href="users.html">Users</a></li>
-         <li><a href="reviews.html">Reviews </a></li>
+         <li><a href="reviews.html">Reviews and Ratings </a></li>
        </ul>
     </div>
   </div>
@@ -349,11 +360,11 @@
           <form class="form-horizontal">
           <div class="col-md-7 form">
             <div class="row">
-             <input type="button" class="btn btn-primary" value="Get Shop" onclick="" id="get-data"/>
-             <input type="button" class="btn btn-primary" value="New Shop" onclick="" id="new-shop"/>
-             <input type="button" class="btn btn-primary" value="Save Shop" onclick="" id="save-shop"/>
-             <input type="button" class="btn btn-primary" value="Delete Shop" onclick="" id="delete-shop"/>
-             <input type="button" class="btn btn-primary" value="Clear Form" onclick="" id="clear-form"/>
+             <input type="button" class="btn btn-primary" value="Get Coffee Shop" onclick="" id="get-data"/>
+             <input type="button" class="btn btn-primary" value="New Coffee Shop" onclick="" id="new-shop"/>
+             <input type="button" class="btn btn-primary" value="Save Coffee Shop" onclick="" id="save-shop"/>
+             <input type="button" class="btn btn-primary" value="Delete Coffee Shop" onclick="" id="delete-shop"/>
+             <input type="button" class="btn btn-primary" value="Clear " onclick="" id="clear-form"/>
             </div>
              
               <br />
@@ -365,22 +376,22 @@
               
             <div class="form-group"> 
              <label class="control-label col-md-3" for="name"> Enter Shop Name: </label>
-             <div class="col-md-9"><input class="form-control" type="text" id="name" size="20"/></div>
+             <div class="col-md-9"><input class="form-control" type="text" id="name" size="25"/></div>
             </div>
               
             <div class="form-group"> 
                <label class="control-label col-md-3" for="street"> Street: </label>
-               <div class="col-md-9"><input class="form-control" type="text" id="street" size="10"/></div>
+               <div class="col-md-9"><input class="form-control" type="text" id="street" size="18"/></div>
             </div>
               
             <div class="form-group">
                 <label class="control-label col-md-3" for="city">City: </label>
-                <div class="col-md-9"><input class="form-control" type="text" id="city" size="10"/></div>
+                <div class="col-md-9"><input class="form-control" type="text" id="city" size="18"/></div>
             </div>
    
             <div class="form-group">
                 <label class="control-label col-md-3" for="state">State:</label>
-                <div class="col-md-9"><input class="form-control" type="text" id="state" size="10"/></div>
+                <div class="col-md-9"><input class="form-control" type="text" id="state" size="18"/></div>
             </div>
               
             <div class="form-group">
@@ -389,7 +400,12 @@
             </div>
             <div class="form-group">
                 <label class="control-label col-md-3" for="phone">Phone : </label>
-                <div class="col-md-9"><input class="form-control" type="text" id="phone" size="10"/></div>
+                <div class="col-md-9"><input class="form-control" type="text" id="phone" size="15"/></div>
+            </div>
+              
+            <div class="form-group">
+                <label class="control-label col-md-3" for="description">Description</label>
+                <div class="col-md-9"><input class="form-control" type="text" id="description" size="50"/></div>
             </div>
               <div class="form-group">
                 <label class="control-label col-md-3" for="opentime">Open Time : </label>
