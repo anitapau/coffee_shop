@@ -16,7 +16,7 @@ public class CoffeeShop {
     /**
      * The id of the coffee shop.
      */
-    public int shop_id;
+    public int shopId;
     /**
      * Name of the coffee shop.
      */
@@ -112,11 +112,11 @@ public class CoffeeShop {
     }
 
     public int getShopid() {
-        return shop_id;
+        return shopId;
     }
 
     public void setShopid(int shopid) {
-        this.shop_id = shopid;
+        this.shopId = shopid;
     }
 
     public String getName() {

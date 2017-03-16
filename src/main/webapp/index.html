@@ -118,8 +118,7 @@
                              'zip' : zip.value,
                              'phone' : phone.value,
                              'opentime' : openhours.value,
-                             'closetime' : closehours.value,
-                           
+                             'closetime' : closehours.value 
                          };           
                 var url='tcss360/coffeeShop/';
                 if (confirm('Are you sure - CREATE ' + shopname.value + ' ?')) {
@@ -148,7 +147,7 @@
                 
                 var shop = { 
                              'shop_id' : shopid.value,
-                             'name': shopname.value,
+                             'name': name.value,
                              'street': street.value,
                              'city' : city.value,
                              'state' : state.value,
@@ -284,7 +283,7 @@
     function render_newshop(data)
     {
         $.each(data, function(index, shop) { 
-          document.getElementById("shop_id").value = shop.shop_id;
+          document.getElementById("shop_id").value = shop.shopId;
         });
         document.getElementById("shop_id").disabled = false;
         $('#mybody').empty();
