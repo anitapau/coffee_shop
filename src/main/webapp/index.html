@@ -246,7 +246,7 @@
     // renders the shop table
     function render(data)  {
       $.each(data, function(index, shop) { 
-          var newrow = "<tr><td id=\"shop_id\"" + index + "\">"+ shop.myshopId + "</td>";
+          var newrow = "<tr><td id=\"shop_id\"" + index + "\">"+ shop.shop_id + "</td>";
           newrow += "<td id=\"name\">" + shop.name + "</td>";
           newrow += "<td id=\"street\">" + shop.street + "</td>";
           newrow += "<td id=\"city\">" + shop.city + "</td>";
@@ -284,7 +284,7 @@
     function render_newshop(data)
     {
         $.each(data, function(index, shop) { 
-          document.getElementById("shop_id").value = shop.shopid;
+          document.getElementById("shop_id").value = shop.shop_id;
         });
         document.getElementById("shop_id").disabled = false;
         $('#mybody').empty();
@@ -329,7 +329,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><span>Coffee Finder</span></a>
+      <a class="navbar-brand" href="#"><span>Coffee Shops</span></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -410,7 +410,7 @@
     <h2>Shops</h2>
     <hr>
       <table class="table table-striped">
-          <thead><tr><th>Shop ID</th><th>Shop</th><th>Street</th><th>City</th><th>State</th><th>Zip</th><th>Phone</th><th>Opens</th><th>Closes</th></tr></thead>
+          <thead><tr><th>Shop ID</th><th>Shop</th><th>Street</th><th>City</th><th>State</th><th>Zip</th><th>Phone</th><th>Opentime</th><th>Closetime</th></tr></thead>
         <tbody id="mybody" class="table-body">
         </tbody>
       </table>
