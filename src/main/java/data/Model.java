@@ -250,6 +250,7 @@ public class Model {
         StringBuilder sqlQuery = new StringBuilder();
         sqlQuery.append("update coffeeshop ");
         sqlQuery.append("set name='" + coffeeShop.getName() + "', ");
+        sqlQuery.append("set street='" + coffeeShop.getAddress()+ "', ");
         sqlQuery.append("city='" + coffeeShop.getCity() + "', ");
         sqlQuery.append("state='" + coffeeShop.getState() + "', ");
         sqlQuery.append("zip='" + coffeeShop.getZip() + "', ");
