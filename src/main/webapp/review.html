@@ -70,7 +70,7 @@
         {
            var reviewid = document.getElementById("reviewid").value;
            var review = { 'reviewid': reviewid.value };           
-           var url='tcss360/review/'+reviewid.value;
+           var url='tcss360/review/'+reviewid;
            if (confirm('Are you sure - DELETE ' + review.value + '-(' + reviewid + ') ?')) {
              $.ajax({
                type: 'DELETE',
@@ -133,7 +133,7 @@
                 var rating = document.getElementById("rating");
                 var reviewSingle = document.getElementById("review");
                 
-                var review = { 'reviewid' : reviewid.value,
+                var review = { 'reviewid' : reviewid,
                              'shopid': shopid.value,
                              'rating' : rating.value,
                           

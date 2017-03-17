@@ -284,7 +284,7 @@ function render_form(data) {
     var list = data;
     if (list)
         $.each(list, function (index, shop) {
-            $('#shop_id').val(shop.shopid);
+            $('#shop_id').val(shop.shopId);
             $('#name').val(shop.name);
             $('#address').val(shop.address);
             $('#city').val(shop.city);
