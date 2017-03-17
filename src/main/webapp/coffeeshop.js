@@ -66,7 +66,7 @@ $(document).ready(function () {
     {
         document.getElementById("shop_id").disabled = true;
         document.getElementById("name").value = "";
-        document.getElementById("street").value = "";
+        document.getElementById("address").value = "";
         document.getElementById("city").value = "";
         document.getElementById("state").value = "";
         document.getElementById("zip").value = "";
@@ -86,7 +86,7 @@ $(document).ready(function () {
         {
             // Create a new record
             var shopname = document.getElementById("name");
-            var street = document.getElementById("street");
+            var address = document.getElementById("address");
             var city = document.getElementById("city");
             var state = document.getElementById("state");
             var zip = document.getElementById("zip");
@@ -96,7 +96,7 @@ $(document).ready(function () {
             var closehours = document.getElementById("closetime");
 
             var shop = {'name': shopname.value,
-                'street': street.value,
+                'address': address.value,
                 'city': city.value,
                 'state': state.value,
                 'zip': zip.value,
@@ -121,7 +121,7 @@ $(document).ready(function () {
             // Update an existing record
             var shopid = document.getElementById("shop_id");
             var name = document.getElementById("name");
-            var street = document.getElementById("street");
+            var address = document.getElementById("address");
             var city = document.getElementById("city");
             var state = document.getElementById("state");
             var zip = document.getElementById("zip");
@@ -133,7 +133,7 @@ $(document).ready(function () {
             var shop = {
                 'shop_id': shopid.value,
                 'name': name.value,
-                'street': street.value,
+                'address': address.value,
                 'city': city.value,
                 'state': state.value,
                 'zip': zip.value,
@@ -189,7 +189,7 @@ $(document).ready(function () {
     {
         document.getElementById("shop_id").value = "";
         document.getElementById("name").value = "";
-        document.getElementById("street").value = "";
+        document.getElementById("address").value = "";
         document.getElementById("city").value = "";
         document.getElementById("state").value = "";
         document.getElementById("zip").value = "";
@@ -234,7 +234,7 @@ function render(data) {
     $.each(data, function (index, shop) {
         var newrow = "<tr><td id=\"shop_id\"" + index + "\">" + shop.shopId + "</td>";
         newrow += "<td id=\"name\">" + shop.name + "</td>";
-        newrow += "<td id=\"street\">" + shop.street + "</td>";
+        newrow += "<td id=\"address\">" + shop.address + "</td>";
         newrow += "<td id=\"city\">" + shop.city + "</td>";
         newrow += "<td id=\"state\">" + shop.state + "</td>";
         newrow += "<td id=\"zip\">" + shop.zip + "</td>";
@@ -286,7 +286,7 @@ function render_form(data) {
         $.each(list, function (index, shop) {
             $('#shop_id').val(shop.shopid);
             $('#name').val(shop.name);
-            $('#street').val(shop.street);
+            $('#address').val(shop.address);
             $('#city').val(shop.city);
             $('#state').val(shop.state);
             $('#zip').val(shop.zip);
@@ -299,7 +299,7 @@ function render_form(data) {
     else
     {
         document.getElementById("name").value = "";
-        document.getElementById("street").value = "";
+        document.getElementById("address").value = "";
         document.getElementById("city").value = "";
         document.getElementById("state").value = "";
         document.getElementById("zip").value = "";
