@@ -104,7 +104,7 @@
                 
                 $('#search').click(function ()
                 {
-                    getshops();
+                    getshopsformap();
                 
                     $.each(coffeeshops, function (index, shop) {
 
@@ -139,7 +139,7 @@
                 });
             }
             
-            function getshops() {
+            function getshopsformap() {
                 // Form load
                 var url = 'tcss360/coffeeShop/api/shops';
 
@@ -147,11 +147,11 @@
                     type: 'GET',
                     url: url,
                     datatype: 'json',
-                    success: render
+                    success: renderformap
                 });
             }
             
-            function render(data) {
+            function renderformap(data) {
                 var addresses = [];
                 $.each(data, function (index, shop) {
                     
