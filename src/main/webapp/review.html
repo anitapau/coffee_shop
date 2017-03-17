@@ -58,7 +58,7 @@
         // the review entered the box, then reload the review form
         $('#reviewid').focusout(function () {
             var curr_reviewid = document.getElementById("reviewid").value;    
-            //alert(curr_reviewid + '---' + old_reviewid)
+            alert(curr_reviewid + '---' + old_reviewid)
             if (curr_reviewid != old_reviewid)
                 getreview();
         });
