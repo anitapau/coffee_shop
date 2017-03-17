@@ -107,7 +107,6 @@
                     getshopsformap();
                 
                     $.each(coffeeshops, function (index, shop) {
-
                         geocodeAddress(shop, geocoder, map);
                     });
                     
@@ -153,8 +152,7 @@
             
             function renderformap(data) {
                 var addresses = [];
-                $.each(data, function (index, shop) {
-                    
+                $.each(data, function (index, shop) { 
                     address = shop.address+ ", " + shop.city +" "+shop.state + ", "+shop.zip;
                     addresses.push(address);
                 });
@@ -208,8 +206,8 @@
                         </div>
 
                         <div class="form-group"> 
-                            <label class="control-label col-md-3" for="street"> Street: </label>
-                            <div class="col-md-9"><input class="form-control" type="text" id="street" size="18"/></div>
+                            <label class="control-label col-md-3" for="address"> Address: </label>
+                            <div class="col-md-9"><input class="form-control" type="text" id="address" size="18"/></div>
                         </div>
 
                         <div class="form-group">
@@ -253,7 +251,7 @@
                     <h2>Shops</h2>
                     <hr>
                     <table class="table table-striped">
-                        <thead><tr><th>Shop ID</th><th>Shop</th><th>Street</th><th>City</th><th>State</th><th>Zip</th><th>Phone</th><th>Desription</th><th>OpenTime</th><th>CloseTime</th></tr></thead>
+                        <thead><tr><th>Shop ID</th><th>Shop</th><th>Address</th><th>City</th><th>State</th><th>Zip</th><th>Phone</th><th>Desription</th><th>OpenTime</th><th>CloseTime</th></tr></thead>
                         <tbody id="mybody" class="table-body">
                         </tbody>
                     </table>
