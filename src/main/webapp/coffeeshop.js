@@ -205,7 +205,7 @@ $(document).ready(function () {
 // gets and displays shops by calling render
 function getshops() {
     // Form load
-    var url = 'tcss360/coffeeShop/api/shops/0';
+    var url = 'tcss360/coffeeShop/api/shops';
 
     $.ajax({
         type: 'GET',
