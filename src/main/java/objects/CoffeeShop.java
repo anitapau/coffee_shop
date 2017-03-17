@@ -24,14 +24,14 @@ public class CoffeeShop {
     /**
      * Street address
      */
-    public String street;
+    public String address;
 
-    public String getStreet() {
-        return street;
+    public String getAddress() {
+        return address;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setAddress(String address) {
+        this.address = address;
     }
     
     /**

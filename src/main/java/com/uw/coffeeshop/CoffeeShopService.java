@@ -5,6 +5,10 @@
  */
 package com.uw.coffeeshop;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import data.Model;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,6 +29,7 @@ import javax.ws.rs.core.UriInfo;
 import objects.CoffeeShop;
 import objects.Review;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
@@ -146,5 +151,35 @@ public class CoffeeShopService {
         }
         return response.toString();
     }
+    
+    
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/common")
+    public String createCoffeeShopFromCommonUrl(String jObj) throws UnirestException, JSONException, IOException{
+        JSONObject input = new JSONObject(jObj);
+        String url = input.getString("url");
+        
+        HttpResponse<JsonNode> getResponse = Unirest.get(url).asJson();
+       
+        Model db = null;
+        ObjectMapper mapper = new ObjectMapper();
+        CoffeeShop[] shops = (CoffeeShop[])mapper.readValue(getResponse.getBody().toString(), CoffeeShop[].class);
+        
+        JSONArray response = new JSONArray();
+        for(CoffeeShop shop: shops){
+            try {
+                db = Model.singleton();
+                int shopid = db.createCoffeeShop(shop);
+                response.put(shopid);
+            } catch (Exception ex) {
+                Logger.getLogger(CoffeeShopService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+       
+        return response.toString();
+    }
+    
 
 }
