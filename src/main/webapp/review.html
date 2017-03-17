@@ -128,7 +128,7 @@
             else
             {
                 // Update an existing record
-                var reviewid = document.getElementById("reviewid").value;
+                var reviewid = document.getElementById("reviewid");
                 var shopid = document.getElementById("shopid");
                 var rating = document.getElementById("rating");
                 var reviewSingle = document.getElementById("review");
@@ -136,11 +136,10 @@
                 var review = { 'reviewid' : reviewid,
                              'shopid': shopid.value,
                              'rating' : rating.value,
-                          
                              'review' : reviewSingle.value
                          };          
                 var url='tcss360/review/';
-                if (confirm('Are you sure - UPDATE ' + reviewSingle.value + ' ?')) {
+                if (confirm('Are you sure - UPDATE ' + reviewid.value + ' ?')) {
                   $.ajax({
                     type: 'PUT',
                     url: url,
