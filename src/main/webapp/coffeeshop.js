@@ -45,7 +45,7 @@ $(document).ready(function () {
     {
         var shopid = document.getElementById("shop_id").value;
         var shopname = document.getElementById("name");
-        var shop = {'shop_id': shopid.value};
+        var shop = {'shop_id': shopid};
         var url = 'tcss360/coffeeShop/' + shopid;
         if (confirm('Are you sure - DELETE ' + shopname.value + '-(' + shopid + ') ?')) {
             $.ajax({

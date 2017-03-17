@@ -69,7 +69,7 @@
         $('#delete-review').click(function ()
         {
            var reviewid = document.getElementById("reviewid").value;
-           var review = { 'reviewid': reviewid.value };           
+           var review = { 'reviewid': reviewid};           
            var url='tcss360/review/'+reviewid;
            if (confirm('Are you sure - DELETE ' + review.value + '-(' + reviewid + ') ?')) {
              $.ajax({
