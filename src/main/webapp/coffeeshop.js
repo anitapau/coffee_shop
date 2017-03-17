@@ -205,7 +205,7 @@ $(document).ready(function () {
 // gets and displays shops by calling render
 function getshops() {
     // Form load
-    var url = 'tcss360/coffeeShop/api/shops';
+    var url = 'tcss360/coffeeShop/api/shops/0';
 
     $.ajax({
         type: 'GET',
@@ -245,8 +245,6 @@ function render(data) {
         newrow += "<td id=\"closetime\">" + shop.closetime + "</td>";
         // newrow += "<td id=\"maps\"><button class=\"btn btn-primary\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseExample"+ shop.myshopId + "\" aria-expanded=\"false\" aria-controls=\"collapseExample\">Directions</button>";
         newrow += "<div class=\"collapse\" id=\"collapseExample" + shop.shopId + "\">";
-        //newrow += "<iframe width=\"500\" height=\"450\" frameborder=\"0\" style=\"border:0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyC7yDiukFj6gYsFTxp0mt9XNJlly3hZtpk&q="+ shop.mylatitude + ","+ shop.mylongitude + "\" allowfullscreen></iframe></div></td></tr>";
-
 
 
         $('#mybody').append(newrow);
