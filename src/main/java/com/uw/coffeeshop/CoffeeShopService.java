@@ -92,7 +92,7 @@ public class CoffeeShopService {
             Model db = Model.singleton();
             int shopId = shop.getShopid();
             db.updateCoffeeShop(shop);
-            response.put("shop_id", shopId);
+            response.put("shopid", shopId);
             logger.log(Level.INFO, "update contents with shop id=" + shopId);
         } catch (SQLException sqle) {
            response.put("Error", sqle.getMessage());

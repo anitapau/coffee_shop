@@ -142,7 +142,7 @@ $(document).ready(function () {
                 'opentime': opentime.value,
                 'closetime': closetime.value
             };
-            var url = 'tcss360/coffeeShop/';
+            var url = 'tcss360/coffeeShop';
             if (confirm('Are you sure - UPDATE ' + name.value + ' ?')) {
                 $.ajax({
                     type: 'PUT',
