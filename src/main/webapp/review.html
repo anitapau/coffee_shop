@@ -69,7 +69,7 @@
         $('#delete-review').click(function ()
         {
            var reviewid = document.getElementById("reviewid").value;
-           var review = { 'review': review.value };           
+           var review = { 'reviewid': reviewid.value };           
            var url='tcss360/review/'+reviewid.value;
            if (confirm('Are you sure - DELETE ' + review.value + '-(' + reviewid.value + ') ?')) {
              $.ajax({
@@ -114,7 +114,7 @@
                              'review' : reviewSingle.value
                          };           
                 var url='tcss360/review/';
-                if (confirm('Are you sure - CREATE ' + ' the review ?')) {
+                if (confirm('Are you sure - CREATE ' + revieSingle.value +' ?')) {
                   $.ajax({
                     type: 'POST',
                     url: url,
