@@ -71,7 +71,7 @@
            var reviewid = document.getElementById("reviewid").value;
            var review = { 'reviewid': reviewid};           
            var url='tcss360/review/'+reviewid;
-           if (confirm('Are you sure - DELETE ' + review.value + '-(' + reviewid + ') ?')) {
+           if (confirm('Are you sure - DELETE ' + 'reviewid' + '-(' + reviewid + ') ?')) {
              $.ajax({
                type: 'DELETE',
                url: url,
@@ -230,6 +230,7 @@
           newrow += "<td id=\"shopid\">" + review.shopid + "</td>";
           newrow += "<td id=\"rating\">" + review.rating + "</td>";
           newrow += "<td id=\"review\">" + review.review + "</td></tr>";
+          newrow += "<div class=\"collapse\" id=\"collapseExample" + review.reviewid + "\">";
           $('#mybody').append(newrow);
       });
     }
