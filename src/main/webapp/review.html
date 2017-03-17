@@ -58,7 +58,7 @@
         // the review entered the box, then reload the review form
         $('#reviewid').focusout(function () {
             var curr_reviewid = document.getElementById("reviewid").value;    
-            alert(curr_reviewid + '---' + old_reviewid)
+            //alert(curr_reviewid + '---' + old_reviewid)
             if (curr_reviewid != old_reviewid)
                 getreview();
         });
@@ -133,7 +133,7 @@
                 var rating = document.getElementById("rating");
                 var reviewSingle = document.getElementById("review");
                 
-                var review = { 'reviewid' : reviewid,
+                var review = { 'reviewid' : reviewid.value,
                              'shopid': shopid.value,
                              'rating' : rating.value,
                              'review' : reviewSingle.value
@@ -163,9 +163,9 @@
         // Use .text() as td doesn't have method .val()
         // Empty first time as the td has no text until clicked.
         $(".table-body").on('click', 'tr', function() {
-            var clicked_reviewid=$(this).find('td:first').text();
+            var clicked_reviewid = $(this).find('td:first').text();
             old_reviewid = clicked_reviewid;
-            var url='tcss360/review/'+clicked_reviewid;
+            var url='tcss360/review/'+ clicked_reviewid;
              $.ajax({
                type: 'GET',
                url: url,
