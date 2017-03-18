@@ -114,6 +114,7 @@ public class Model {
             review.setReview(rows.getString("reviews"));
             review.setRating(rows.getInt("rating"));
             review.setShopid(rows.getInt("shopid"));
+            review.setReviewid(rows.getInt("reviewid"));
             logger.log(Level.INFO, "Adding coffeeShop to list with id=" + review.getShopid());
             ll.add(review);
         }
