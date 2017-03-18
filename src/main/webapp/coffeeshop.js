@@ -197,6 +197,7 @@ $(document).ready(function () {
         document.getElementById("description").value = "";
         document.getElementById("opentime").value = "";
         document.getElementById("closetime").value = "";
+        document.getElementById("shop_id").disabled = false;
         return;
     });
 
