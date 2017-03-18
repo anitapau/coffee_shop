@@ -9,6 +9,8 @@
             body {
                 padding-top: 100px;
                 background-color: lightblue;
+                margin-left: 10px;
+                margin-right: 10px;
             }
 
             .form {
@@ -30,12 +32,19 @@
                 width: 300;
                 height: 300;
             }
+           
             
             #map {
                 position:absolute;
                 right:30px;
                 height: 500px;
                 width: 500px;
+                
+            }
+             #search {
+                position: absolute;
+                right: -100px;
+                top:500px;
                 
             }
             html, body {
@@ -57,8 +66,8 @@
         
         <div id="map"></div>
         
-        <div class="col-md-9"><input class="form-control" type="text" id="searchcoffeeshop" size="18"/>
-                                    <input type="button" class="btn btn-primary" value="Search" onclick="" id="search"/>
+        <div class="col-md-9">
+                    <input type="button" class="btn btn-primary" value="Find nearby shops" onclick="" id="search"/>
            </div>
         
         <div>
@@ -109,9 +118,10 @@
                 $('#search').click(function ()
                 {
                     getshopsformap();
-                
+                    coffeeshops = coffeeshops.slice(6);
                     $.each(coffeeshops, function (index, shop) {
-                        geocodeAddress(shop, geocoder, map);
+                        address = shop.address+ ", " + shop.city +" "+shop.state + ", "+shop.zip;
+                        geocodeAddress(shop.name, address, geocoder, map);
                     });
                     
                     var address = document.getElementById('searchcoffeeshop').value;
@@ -127,14 +137,14 @@
             }
             
             
-            function geocodeAddress(address, geocoder, resultsMap) {
+            function geocodeAddress(name, address, geocoder, resultsMap) {
                 geocoder.geocode({'address': address}, function(results, status) {
                   if (status === 'OK') {
                     resultsMap.setCenter(results[0].geometry.location);
                     var marker = new google.maps.Marker({
                       map: resultsMap,
                       position: results[0].geometry.location,
-                      title: address
+                      title: name
                     });
                   } else {
                     alert('Geocode was not successful for the following reason: ' + status);
@@ -157,8 +167,7 @@
             function renderformap(data) {
                 var addresses = [];
                 $.each(data, function (index, shop) { 
-                    address = shop.address+ ", " + shop.city +" "+shop.state + ", "+shop.zip;
-                    addresses.push(address);
+                    addresses.push(shop);
                 });
                 coffeeshops = addresses;
             }
