@@ -124,7 +124,7 @@
                 $('#search').click(function ()
                 {
                     getshopsformap();
-                    coffeeshops = coffeeshops.slice(0, 6);
+                    coffeeshops = coffeeshops.slice(0,15);
                     $.each(coffeeshops, function (index, shop) {
                         address = shop.address+ ", " + shop.city +" "+shop.state + ", "+shop.zip;
                         geocodeAddress(shop.name, address, geocoder, map);
