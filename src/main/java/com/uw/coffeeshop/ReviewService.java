@@ -102,7 +102,7 @@ public class ReviewService {
     }
 
     @POST
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
    public String createReview(String jobj) throws IOException, JSONException {
        ObjectMapper mapper = new ObjectMapper();
@@ -113,7 +113,7 @@ public class ReviewService {
             Model db = Model.singleton();
             int reviewid = db.createReview(review);
             logger.log(Level.INFO, "Review persisted to db as id=" + reviewid);
-            response.put("shopId", reviewid);
+            response.put("reviewid", reviewid);
         } catch (SQLException sqle) {
             String errText = "Error persisting review after db connection made:\n" + sqle.getMessage() + " --- " + sqle.getSQLState() + "\n";
             logger.log(Level.SEVERE, errText);
