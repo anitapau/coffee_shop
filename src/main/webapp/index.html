@@ -13,8 +13,10 @@
             }
             
             #thePage{
-                 margin-left: 20px;
-                margin-right: 20px;
+                margin-left: 25px;
+                margin-right: 25px;
+                margin-top: 25px;
+                margin-bottom: 25px;
             }
 
             .form {
@@ -85,7 +87,7 @@
             var map;
             var geocoder;
             var service; 
-            var coffeeshops;
+            var coffeeshops = [];
 
             function initMap() {
               map = new google.maps.Map(document.getElementById('map'), {
