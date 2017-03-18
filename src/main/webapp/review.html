@@ -253,7 +253,7 @@
     function render_newreview(data)
     {
         $.each(data, function(index, review) { 
-          document.getElementById("reviewid").value = review.reviewid;
+          document.getElementById("reviewid").value = review;
         });
         document.getElementById("reviewid").disabled = false;
         $('#mybody').empty();

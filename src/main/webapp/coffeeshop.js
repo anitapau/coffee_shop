@@ -131,7 +131,7 @@ $(document).ready(function () {
             var closetime = document.getElementById("closetime");
 
             var shop = {
-                'shop_id': shopid.value,
+                'shopId': shopid.value,
                 'name': name.value,
                 'address': address.value,
                 'city': city.value,
@@ -270,7 +270,7 @@ function render_delete(data)
 function render_newshop(data)
 {
     $.each(data, function (index, shop) {
-        document.getElementById("shop_id").value = shop.shopId;
+        document.getElementById("shop_id").value = shop;
     });
     document.getElementById("shop_id").disabled = false;
     $('#mybody').empty();
