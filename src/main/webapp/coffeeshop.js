@@ -255,6 +255,7 @@ function render(data) {
 function render_clear(data)
 {
     $('#mybody').empty();
+    document.getElementById("shop_id").disabled = false;
     getshops();
 }
 
