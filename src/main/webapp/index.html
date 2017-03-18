@@ -129,9 +129,6 @@
                         address = shop.address+ ", " + shop.city +" "+shop.state + ", "+shop.zip;
                         geocodeAddress(shop.name, address, geocoder, map);
                     });
-                    
-                    var address = document.getElementById('searchcoffeeshop').value;
-                    geocodeAddress(address, geocoder, map);
                 });
             }
             
