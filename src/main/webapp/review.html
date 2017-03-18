@@ -113,7 +113,7 @@
                              'rating' : rating.value,
                              'review' : reviewSingle.value
                          };           
-                var url='tcss360/review/';
+                var url='tcss360/review';
                 if (confirm('Are you sure - CREATE ' + reviewSingle.value +' ?')) {
                   $.ajax({
                     type: 'POST',
@@ -208,8 +208,8 @@
     // gets and displays reviews by calling render
     function getreview() {
         // Form load
-        var reviewid = document.getElementById("reviewid"); 
-        var url='tcss360/review/' + reviewid.value;
+        var reviewid = document.getElementById("reviewid").value; 
+        var url='tcss360/review/' + reviewid;
 
         $.ajax({
           type: 'GET',
